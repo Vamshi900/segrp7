@@ -1,2 +1,10 @@
-# segrp7
-segrp7 e commerce project
+<center><h1>SparkStore (E-commerce Application)</h1></center>
+
+### Abstract:
+Increasingly, people are shifting from offline markets to online markets as new websites cater to commercial transactions over the web. The “SparkStore” project is an e-commerce web application that enables consumers to sell and buy electronic goods online. The system is implemented using a 3-tier approach, with a backend database using MySQL, server-side using JavaScript framework (Node.js), and a web browser as the front-end client. The project majorly focuses on the data collections, operations, and business rules/policies for the Frontend Webpages, role-based privileges to the user, Cart Management, Order management, Payment Management, and Content Moderation. 
+
+### Description:
+
+Our Project “SparkStore” is an E-commerce web app for selling and buying electronic items.  
+The front end will consist of a Homepage with a catalog of different electronic items listed by the Seller along with a search text box for text-based search based on the product name and type. Different privileges will be set based on the user role. The project has four roles: Admin, Customer, Seller, and Guest. The Guest can only access the Homepage, where they can view and search the available products. Guests will be redirected to the login page when they try to add items to the cart. The Customer will have access to the Homepage, their cart, and order history, while the Seller will have access to the Homepage, listing page, and sales. The admin can moderate the content, resolve issues/grievances and manage user privileges.   
+The Homepage will have links to access the Order History and Cart based on the User privileges. The Order History page will display the Customer's top 10 most recent orders and a filter for the order types ( Active, Closed, Canceled ). The Cart page will include the list of items added to the cart along with quantity, price, and total cart value.  The user can update the number of items in the cart, delete items from the cart or save them for a later date. A checkout button will take the user to the payments page, where the user will have the option of either adding payment details or using previously saved cards and then purchasing the product. All the connections, requests, and operations of the backend will be developed using Node.js which is a Javascript framework used for running JavaScript code outside the web browser.
