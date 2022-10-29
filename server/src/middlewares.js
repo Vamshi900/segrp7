@@ -13,7 +13,15 @@ function notFound(req, res, next) {
     });
   }
   
+  function allowCrossDomain(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*'); // * for development purposes
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+}
+
   module.exports = {
     notFound,
-    errorHandler
+    errorHandler,
+    allowCrossDomain
   };
