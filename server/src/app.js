@@ -7,6 +7,7 @@ const api = require('./api');
 const app = express();
 
 app.use(express.json());
+app.use(middlewares.allowCrossDomain)
 
 app.get('/', (req, res) => {
   res.json({
