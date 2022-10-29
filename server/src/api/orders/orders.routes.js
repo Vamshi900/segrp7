@@ -45,7 +45,7 @@ router.get('/:Order_ID', async (req, res, next) => {
       */
      //Temporary Test Data:
         res.json({
-            Order_ID: "28394792387",
+            Order_ID: 28394792387,
             Order_Detail: "This is Order Detail",
             Date: `${new Date("2022-10-29")}`,
             Order_Type: "Order Type",
@@ -62,7 +62,7 @@ router.post('/create', async (req, res) => {
 
     try {
         res.json({
-            Order_ID: "28394792387",
+            Order_ID: 28394792387,
             Order_Detail: "This is Order Detail",
             Date: `${new Date("2022-10-29")}`,
             Order_Type: "Order Type",
@@ -78,7 +78,7 @@ router.put('/edit/:Order_ID', async (req, res) => {
     try {
         // Query database to find object with ORDER_ID
         res.json({
-            Order_ID: "28394792387",
+            Order_ID: 28394792387,
             Order_Detail: "This is Order Detail",
             Date: `${new Date("2022-10-29")}`,
             Order_Type: "Order Type",
