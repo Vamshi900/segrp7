@@ -58,7 +58,7 @@ router.get('/:Order_ID', async (req, res, next) => {
 });
 
 // Create order
-router.post('/', async (req, res) => {
+router.post('/create', async (req, res) => {
 
     try {
         res.json({
@@ -73,7 +73,7 @@ router.post('/', async (req, res) => {
 });
 
 // update order
-router.put('/:Order_ID', async (req, res) => {
+router.put('/edit/:Order_ID', async (req, res) => {
 
     try {
         // Query database to find object with ORDER_ID
