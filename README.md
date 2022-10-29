@@ -14,4 +14,4 @@ Increasingly, people are shifting from offline markets to online markets as new 
 
 ### API Routes:
 
-1. API overview: `http://localhost:3000/api/v1/`
+1. API overview: `/api/v1`
