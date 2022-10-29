@@ -6,14 +6,20 @@ Increasingly, people are shifting from offline markets to online markets as new 
 ---
 ## Setup
 
-```npm install```
+```sh
+npm install
+```
 
 ### Development
 
-```npm run dev```
+```sh
+npm run dev
+```
 
 ### Production
-```npm run start```
+```sh
+npm run start
+```
 
 ---
 
