@@ -6,17 +6,23 @@ Increasingly, people are shifting from offline markets to online markets as new 
 ---
 ## Setup
 
+### To run server:
+
+```sh
+cd server
+```
+### Install packages 
 ```sh
 npm install
 ```
 
-### Development
+### Run development
 
 ```sh
 npm run dev
 ```
 
-### Production
+### Run production
 ```sh
 npm run start
 ```
