@@ -1,6 +1,6 @@
 const express = require("express");
-const orders = require("./orders/orders.routes")
-
+const orders = require("./orders/orders.routes");
+const products = require("./products/products.routes");
 
 const router = express.Router();
 
@@ -12,8 +12,7 @@ router.get("/", (req, res) => {
 });
 
 
-router.use('/orders', orders)
-
-
+router.use('/orders', orders);
+router.use('/products', products);
 
 module.exports = router;
