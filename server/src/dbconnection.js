@@ -1,11 +1,17 @@
 const mysql = require('mysql');
 
+
+// Host: sparkstore-db.cwghnrodrqcd.us-east-1.rds.amazonaws.com
+// Port: 3306
+// Username: admin
+// Password: Janishcgo_5m
+
 const dbConn = mysql.createConnection({
-    host:process.env.DB_HOST,
-    port:process.env.DB_PORT,
-    user:process.env.DB_USER,
-    password:process.env.DB_PASSWORD,
-    database:process.env.DB_NAME,
+    host:"sparkstore-db.cwghnrodrqcd.us-east-1.rds.amazonaws.com",
+    port: 3306,
+    user: "admin",
+    password: "Janishcgo_5m",
+    database:"SparkStore",
   });
 
   
