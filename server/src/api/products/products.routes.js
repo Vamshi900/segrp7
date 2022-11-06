@@ -2,19 +2,32 @@ const express = require('express');
 const router = express.Router();
 const dbConn = require('../../dbconnection.js');
 
-// GET Products
+// GET Product Details
 router.get('/:Product_ID', async(req, res, next) =>{
-    let Product_ID = req.params.Product_ID;
-    if (!isNaN(Product_ID)){
-        id = parseInt(Product_ID);
-        dbConn.query('SELECT * FROM Product WHERE Product_ID=?', id, (err, result)=>{
-            if(err){
-                console.log('Error while fetching employee by id', err);
-            }else{
-                console.log(JSON.stringify(result));
-                res.json(result);
-            }
-        });
+    try {
+        let Product_ID = req.params.Product_ID;
+        if (!isNaN(Product_ID)) {
+            id = parseInt(Product_ID);
+            dbConn.query('SELECT * FROM Product WHERE Product_ID=?', id, (err, result)=>{
+                if(err) {
+                    console.log('Error while fetching Product by id: ', err);
+                    res.status(500);
+                    res.json({"error": {"message" : "Internal Server Error", "code" : "500"}});
+                }
+                else {
+                    console.log(JSON.stringify(result));
+                    res.json(result);
+                }
+            });
+        }
+        else {
+            throw ('Error while fetching Product id: ID is NaN');
+        }
+    }
+    catch(err) {
+        console.log(err);
+        res.status(500);
+        res.json({"error": {"message" : "Internal Server Error", "code" : "500"}});
     }
 });
 
@@ -22,7 +35,9 @@ router.get('/:Product_ID', async(req, res, next) =>{
 router.get('/', async(req, res, next) =>{
     dbConn.query('SELECT * FROM Product', (err, result)=>{
         if(err){
-            console.log('Error while fetching employees', err);
+            console.log('Error while fetching products', err);
+            res.status(500);
+            res.json({"error": {"message" : "Internal Server Error", "code" : "500"}});
         }else{
             console.log(JSON.stringify(result));
             res.json(result);
@@ -37,7 +52,9 @@ router.get('/category/:Category', async(req, res, next) =>{
     let Category = req.params.Category;
     dbConn.query('SELECT * FROM Product WHERE Category=?', Category, (err, result)=>{
         if(err){
-            console.log('Error while fetching employees', err);
+            console.log('Error while fetching products', err);
+            res.status(500);
+            res.json({"error": {"message" : "Internal Server Error", "code" : "500"}});
         }else{
             console.log(JSON.stringify(result));
             res.json(result);
@@ -53,6 +70,8 @@ router.get('/name/:Name', async(req, res, next) =>{
     dbConn.query('SELECT * FROM Product WHERE Product_Name=?', Name, (err, result)=>{
         if(err){
             console.log('Error while fetching Products by name', err);
+            res.status(500);
+            res.json({"error": {"message" : "Internal Server Error", "code" : "500"}});
         }else{
             console.log(JSON.stringify(result));
             res.json(result);
@@ -69,6 +88,8 @@ router.get('/price/:Min_Price/:Max_Price', async(req, res, next) =>{
     dbConn.query('SELECT * FROM Product WHERE Price BETWEEN ? AND ?', [Min_Price, Max_Price], (err, result)=>{
         if(err){
             console.log('Error while fetching Products by price range', err);
+            res.status(500);
+            res.json({"error": {"message" : "Internal Server Error", "code" : "500"}});
         }else{
             console.log(JSON.stringify(result));
             res.json(result);
@@ -85,6 +106,8 @@ router.get('/brand/:Brand', async(req, res, next) =>{
     dbConn.query('SELECT * FROM Product WHERE Brand=?', Brand, (err, result)=>{
         if(err){
             console.log('Error while fetching Products by brand', err);
+            res.status(500);
+            res.json({"error": {"message" : "Internal Server Error", "code" : "500"}});
         }else{
             console.log(JSON.stringify(result));
             res.json(result);
@@ -100,6 +123,8 @@ router.get('/availability/:Availability', async(req, res, next) =>{
     dbConn.query('SELECT * FROM Product WHERE Availability=?', Availability, (err, result)=>{
         if(err){
             console.log('Error while fetching Products by Availability', err);
+            res.status(500);
+            res.json({"error": {"message" : "Internal Server Error", "code" : "500"}});
         }else{
             console.log(JSON.stringify(result));
             res.json(result);
@@ -114,6 +139,8 @@ router.get('/quantity/:Min_Quantity', async(req, res, next) =>{
     dbConn.query('SELECT * FROM Product WHERE Quantity >= ?', Min_Quantity, (err, result)=>{
         if(err){
             console.log('Error while fetching Products by Quantity', err);
+            res.status(500);
+            res.json({"error": {"message" : "Internal Server Error", "code" : "500"}});
         }else{
             console.log(JSON.stringify(result));
             res.json(result);
