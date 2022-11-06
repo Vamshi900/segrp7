@@ -1,60 +1,46 @@
 const express = require('express');
-
 const router = express.Router();
-
+const dbConn = require('../../dbconnection.js');
 
 // READ all orders
 router.get('/', async (req, res) => {
-
-    if (req.query.search){
-        //search database
-        res.json([{
-            Order_ID: "292387",
-            Order_Detail: "This is Order Detail",
-            Date: `${new Date("2022-10-29")}`,
-            Order_Type: "Order Type",
-          }]);
-    } else{
-    res.json([{
-        Order_ID: "292387", 
-        Order_Detail: "This is Order Detail",
-        Date: `${new Date("2022-10-29")}`,
-        Order_Type: "Order Type",
-      },{
-        Order_ID: "23423",
-        Order_Detail: "This is Order Detail",
-        Date: `${new Date("2022-10-12")}`,
-        Order_Type: "Order Type",
-      },{
-        Order_ID: "9843",
-        Order_Detail: "This is Order Detail",
-        Date: `${new Date("2022-10-8")}`,
-        Order_Type: "Order Type",
-      }]);
+  dbConn.query('SELECT * FROM Orders', (err, result)=>{
+    if(err){
+        console.log('Error while fetching orders', err);
+        res.status(500);
+        res.json({"error": {"message" : "Internal Server Error", "code" : "500"}});
+    }else{
+        console.log(JSON.stringify(result));
+        res.json(result);
     }
-
+});
 });
 // READ one order
 router.get('/:Order_ID', async (req, res, next) => {
-    let Order_ID = req.params.Order_ID
-
-    if (!isNaN(Order_ID)) {
-        id = parseInt(Order_ID)
-      /*
-        Query Database
-      */
-     //Temporary Test Data:
-        res.json({
-            Order_ID: 28394792387,
-            Order_Detail: "This is Order Detail",
-            Date: `${new Date("2022-10-29")}`,
-            Order_Type: "Order Type",
-          });
-    } else {
-    // return status 404 and empty array
-    res.statusCode = 404
-    res.json([]);
-    }
+    try {
+      let Order_ID = req.params.Order_ID
+      var q1_output, q2_output;
+      if (!isNaN(Order_ID)) {
+        id = parseInt(Order_ID);
+        dbConn.query('SELECT * FROM Orders INNER JOIN Order_Products ON Orders.Order_ID = Order_Products.Order_ID WHERE Orders.Order_ID=?', id, (err, result)=>{
+          if(err){
+              console.log('Error while fetching orders', err);
+              res.status(500);
+              res.json({"error": {"message" : "Internal Server Error", "code" : "500"}});
+          }else{
+              console.log(JSON.stringify(result));
+              res.json(result);
+          }});
+      }
+      else {
+          throw ('Error while fetching Product id: ID is NaN');
+      }
+  }
+  catch(err) {
+      console.log(err);
+      res.status(500);
+      res.json({"error": {"message" : "Internal Server Error", "code" : "500"}});
+  }
 });
 
 // Create order
@@ -87,9 +73,5 @@ router.put('/edit/:Order_ID', async (req, res) => {
         console.log(error)
     }
 });
-
-
-
-
 
 module.exports = router;
