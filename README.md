@@ -29,6 +29,14 @@ npm run start
 
 ---
 
+### running client 
+
+1. Download chrome extesion 
+``` https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en ```
+
+1. serve  client  folder in the code using the extension
+
+
 ## API Routes:
 
 ### API overview: `/api/v1`
