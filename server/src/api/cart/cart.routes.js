@@ -162,7 +162,8 @@ router.put('/updatequantity', async(req, res, next) =>{
                     });
                 }
                 return res.status(200).send({
-                    message: "quantity updated"
+                    message: "quantity updated in cart with "+ result.affectedRows + " row(s) affected"
+                    
                 });
             });
         });
@@ -192,14 +193,15 @@ router.get('/:user_id', async(req, res, next) =>{
             });
         }
         // get cart
-        dbConn.query('SELECT * FROM Cart WHERE User_ID=?', req.body.user_id, (err, result)=>{
+        dbConn.query('SELECT * FROM Cart WHERE User_ID=?', user_id, (err, result)=>{
             if(err){
                 return res.status(400).send({
                     message: "cart is empty"
                 });
             }
             return res.status(200).send({
-                message: "cart retrieved"
+                message: "cart retrieved",
+                data: result
             });
         });
     });
