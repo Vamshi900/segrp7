@@ -9,27 +9,27 @@ function dynamicClothingSection(ob) {
 
   let boxLink = document.createElement("a");
   // boxLink.href = '#'
-  boxLink.href = "/contentDetails.html?" + ob.id;
+  boxLink.href = "/contentDetails.html?" + ob.Product_ID;
   // console.log('link=>' + boxLink);
 
   let imgTag = document.createElement("img");
   // imgTag.id = 'image1'
   // imgTag.id = ob.photos
-  imgTag.src = ob.preview;
+  imgTag.src = ob.Product_Image;
 
   let detailsDiv = document.createElement("div");
   detailsDiv.id = "details";
 
   let h3 = document.createElement("h3");
-  let h3Text = document.createTextNode(ob.name);
+  let h3Text = document.createTextNode(ob.Product_Name);
   h3.appendChild(h3Text);
 
   let h4 = document.createElement("h4");
-  let h4Text = document.createTextNode(ob.brand);
+  let h4Text = document.createTextNode(ob.Brand);
   h4.appendChild(h4Text);
 
   let h2 = document.createElement("h2");
-  let h2Text = document.createTextNode("rs  " + ob.price);
+  let h2Text = document.createTextNode("rs  " + ob.Price);
   h2.appendChild(h2Text);
 
   boxDiv.appendChild(boxLink);
@@ -85,7 +85,7 @@ httpRequest.onreadystatechange = function() {
 };
 httpRequest.open(
   "GET",
-  "https://5d76bf96515d1a0014085cf9.mockapi.io/product",
+  "http://localhost:5001/api/v1/products",
   true
 );
 httpRequest.send();
