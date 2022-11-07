@@ -241,8 +241,4 @@ router.put('/updateorderstatus', async (req, res, next) => {
 
 
 
-
-
-
-
 module.exports = router;
