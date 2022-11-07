@@ -3,7 +3,7 @@
 let contentTitle;
 
 console.log(document.cookie);
-function dynamicClothingSection(ob) {
+function dynamicContents(ob) {
   let boxDiv = document.createElement("div");
   boxDiv.id = "box";
 
@@ -43,14 +43,14 @@ function dynamicClothingSection(ob) {
 }
 
 //  TO SHOW THE RENDERED CODE IN CONSOLE
-// console.log(dynamicClothingSection());
+// console.log(dynamicContents());
 
 // console.log(boxDiv)
 
 let mainContainer = document.getElementById("mainContainer");
-let containerClothing = document.getElementById("containerClothing");
+let contentContainer = document.getElementById("contentContainer");
 let containerAccessories = document.getElementById("containerAccessories");
-// mainContainer.appendChild(dynamicClothingSection('hello world!!'))
+// mainContainer.appendChild(dynamicContents('hello world!!'))
 
 // BACKEND CALLING
 
@@ -69,12 +69,12 @@ httpRequest.onreadystatechange = function() {
         if (contentTitle[i].isAccessory) {
           console.log(contentTitle[i]);
           containerAccessories.appendChild(
-            dynamicClothingSection(contentTitle[i])
+            dynamicContents(contentTitle[i])
           );
         } else {
           console.log(contentTitle[i]);
-          containerClothing.appendChild(
-            dynamicClothingSection(contentTitle[i])
+          contentContainer.appendChild(
+            dynamicContents(contentTitle[i])
           );
         }
       }
