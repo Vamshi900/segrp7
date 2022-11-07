@@ -12,7 +12,7 @@ h1
     font-weight: 700;
     text-transform: capitalize;
 }
-#containerClothing, #containerAccessories
+#contentContainer, #containerAccessories
 {
     display: grid;
     grid-gap: 70px 20px;
@@ -33,7 +33,7 @@ h1
 {
     box-shadow: 1px 6px 3px 0 rgb(185, 185, 185);
 }
-#containerClothing img
+#contentContainer img
 {
     width: 100%;
     border-top-left-radius: 10px;
@@ -76,7 +76,7 @@ h2
     {
         font-size: 25px;
     }
-    #containerClothing, #containerAccessories
+    #contentContainer, #containerAccessories
     {
         width: 95%;
         grid-gap: 10px;
@@ -88,7 +88,7 @@ h2
     {
         width: 80%;
     }
-    #containerClothing, #containerAccessories
+    #contentContainer, #containerAccessories
     {
         display: grid;
         grid-gap: 70px 20px;
@@ -106,7 +106,7 @@ h2
     {
         width: 90%;
     }
-    #containerClothing, #containerAccessories
+    #contentContainer, #containerAccessories
     {
         width: 90%;
     }
@@ -117,7 +117,7 @@ h2
     {
         width: 70%;
     }
-    #containerClothing, #containerAccessories
+    #contentContainer, #containerAccessories
     {
         width: 70%;
     }
@@ -128,7 +128,7 @@ h2
     {
         width: 80%;
     }
-    #containerClothing, #containerAccessories
+    #contentContainer, #containerAccessories
     {
         width: 80%;
         grid-template-columns: repeat(2, 1fr);
