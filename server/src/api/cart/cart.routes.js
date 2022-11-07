@@ -18,6 +18,9 @@ router.post('/addtocart', async(req, res, next) =>{
     // safe guard against sql injection
     // validate input
     // check if user exists
+    // add Date_Added to the request body
+    let d = new Date();
+    req.body.Date_Added = d;
     if(!req.body.user_id){
         return res.status(400).send({
             message: "user_id can not be empty"
