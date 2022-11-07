@@ -11,7 +11,7 @@ app.use(middlewares.allowCrossDomain)
 
 app.get('/', (req, res) => {
   res.json({
-    message: '🦄🌈✨👋🌎🌍🌏✨🌈🦄'
+    message: 'Welcome to sparkstore'
   });
 });
 
