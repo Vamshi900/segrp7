@@ -102,15 +102,18 @@ router.post('/', async(req, res, next) =>{
     let Mobile_Number = req.body.Mobile_Number;
     let Password = req.body.Password;
     let Role = req.body.Role;
-    let User = {Primary_Email_Id: Primary_Email_Id, Alternate_Email_Id: Alternate_Email_Id, User_Name: User_Name, 
+    let User_ID = Math.floor(Math.random() * 1000);
+    let User = {User_ID: User_ID, Primary_Email_Id: Primary_Email_Id, Alternate_Email_Id: Alternate_Email_Id, User_Name: User_Name, 
         Birth_Gender: Birth_Gender, DOB: DOB, Mobile_Number: Mobile_Number, Password: Password, Role: Role};
     let sql = "INSERT INTO User SET ?";
     dbConn.query(sql, User, (err, result)=>{
         if(err){
             console.log('Error while inserting data', err);
+            res.status(500);
+            res.json({"error": {"message" : "Internal Server Error", "code" : "500"}});
         }else{
             console.log('User created successfully');
-            res.json(result);
+            res.json({"success": {"message" : "User Created Successfully", "code" : "200"}});
         }
     });
 }
@@ -149,7 +152,7 @@ router.delete('/:User_ID', async(req, res, next) =>{
             console.log('Error while deleting data', err);
         }else{
             console.log('User deleted successfully');
-            res.json(result);
+            res.json({"success": {"message" : "User Deleted Successfully", "code" : "200"}});
         }
     });
 }
