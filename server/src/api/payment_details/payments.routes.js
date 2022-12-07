@@ -31,7 +31,102 @@ router.get('/payment_gateway', async(req, res, next) =>{
 }
 );
 
+// payment details from the user 
+// input: user_id, amount, first_name, last_name, card number, expiration date, cvv, billing address, save card
+router.post('/payment', async(req, res, next) =>{
+    //check if required parameters are present
+    if(!req.body.user_id){
+        return res.status(400).send({
+            message: "user_id can not be empty"
+        });
+    }
 
+    if(!req.body.amount){
+        return res.status(400).send({
+            message: "amount can not be empty"
+        });
+    }
+
+    if(!req.body.first_name){
+        return res.status(400).send({
+            message: "first name can not be empty"
+        });
+    }
+    
+    if(!req.body.card_number){
+        return res.status(400).send({
+            message: "No card details provided"
+        });
+    }
+    else {
+        var flag = false;
+        var mastercardno = /^(?:5[1-5][0-9]{14})$/;
+        var visacardno = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
+        if(req.body.card_number.match(mastercardno))
+        {
+            flag = true;
+        }
+        if(req.body.card_number.match(visacardno))
+        {
+            flag = true;
+        }
+        if(!flag) {
+            return res.status(400).send({
+                message: "card details are not correct"
+            });
+        }
+    }
+
+    if(!req.body.exp_month && !req.body.exp_year){
+        return res.status(400).send({
+            message: "expiration date can not be empty"
+        });
+    }
+    else {
+        var date = new Date ();
+        var month = date.getMonth();
+        var year = date.getFullYear();
+        var exYear = Number(req.body.exp_year);
+        var exMonth = Number(!req.body.exp_month)
+        if (year> exYear || (year === exYear && month >= exMonth)){
+            return res.status(400).send({
+                message: "card has expired"
+            });
+        }
+
+    }
+
+    if(!req.body.cvv) {
+        return res.status(400).send({
+            message: "card cvv missing"
+        });
+    }
+    else {
+        var cvvex = new RegExp(/^[0-9]{3,4}$/);
+        if(!cvvex.test(req.body.cvv)) {
+            return res.status(400).send({
+                message: "cvv not in correct format"
+            });
+        }
+    }
+
+    // safe guard against sql injection
+    // validate input
+    // check if user exists
+    dbConn.query('SELECT * FROM User WHERE User_ID=?', req.body.user_id, (err, result)=>{
+        if(err){
+            console.log('Error while fetching user by id', err);
+        }else{
+            console.log(JSON.stringify(result));
+            if(result.length == 0){
+                return res.status(400).send({
+                    message: "user does not exist"
+                });
+            }
+        }
+    });
+    res.json({ "response": "sucess" });
+});
 
 // approve payment
 // post request
