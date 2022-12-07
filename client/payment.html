@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- <link rel="stylesheet" href="css/login.css"> -->
+    <!-- favicon -->
+
+    <!-- header links -->
+    <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+
+
+    
+		<!-- <meta charset="utf-8"> -->
+    	<title>CheckOut</title>
+		<script src="https://use.fontawesome.com/fbf13eceb7.js"></script>
+    	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+		<link rel="stylesheet" href="css/payment.css" >
+    
+</head>
+<body>
+        <!-- HEADER -->
+    <div id="1"></div>
+    <br>
+    <br>
+    <script>
+        load("header.html");
+        function load(url)
+        {
+            req = new XMLHttpRequest();
+            req.open("GET", url, false);
+            req.send(null);
+            document.getElementById(1).innerHTML = req.responseText;
+        }
+    </script>
+    <br>
+    <br>
+        <!-- PAYMENT CONTAINER -->
+        <div class="container2" >
+    		<div class="colored">
+            </div>
+    		<div class="info" style="padding-top: 300px;">
+                <div class="price">
+                    <!-- Display total -->
+                    <span>$245.00</span>
+    
+                    <span style="padding-left: 50px;">Total</span>
+                    </div>
+
+    		</div>
+    		<div class="form">
+    			<h3>Payment Information</h3>
+    			<form action="" method="post">
+    				<label>PAYMENT METHOD</label>
+    				<span class="select"><select>
+    					<option value="VISA">VISA</option>
+    					<option value="MASTERCARD">MASTER CARD</option>
+    					<option value="AMERICAN EXPRESS">AMERICA EXPRESS</option>
+    				</select></span>
+    				<label>CARDHOLDER'S NAME</label>
+    				<input type="text" name="name">
+    				<label>CARD NUMBER</label>
+    				<input type="text" name="CCN">
+    				<span class="expiry">
+	    				<label>EXPIRATION DATE</label>
+						<span class="select"><select class="small">
+	    					<option value="MARCH">MARCH</option>
+	    					<option value="MASTERCARD">APRIL</option>
+	    					<option value="AMERICAN EXPRESS">MAY</option>
+	    				</select></span>
+	    				<span class="select"><select class="small">
+	    					<option value="2023">2023</option>
+	    					<option value="2024">2024</option>
+	    					<option value="2025">2025</option>
+	    				</select></span>
+	    			</span>
+	    			<span class="sec">
+	    				<LABEL>SECURITY CODE</LABEL>
+	    				<input type="number" name="sec" maxlength="3" />
+    				</span>
+
+    				<p>Your Credit Card Information Is Encrypted </p>
+    				<button>PURCHASE SAFELY</button>
+    			</form>
+    		</div>
+    	</div>
+	</body>
+    <!-- FOOTER -->
+    
+
+
+</html>
