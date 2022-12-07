@@ -33,7 +33,74 @@ router.get('/:Product_ID', async (req, res, next) => {
 
 //GET all products 
 router.get('/', async (req, res, next) => {
-    dbConn.query('SELECT * FROM Product', (err, result) => {
+    let categories = req.query.categories;
+    let subcategories = req.query.subcategories;
+    let brands = req.query.brands;
+    
+    let query = "SELECT * FROM Product";
+
+    let filters = [];
+    if(categories != null) {
+        
+        if(!Array.isArray(categories)){
+            categories = [categories];
+        }
+
+        if(categories.length > 0) {
+            filter = "Category IN (";
+            categories.forEach(category => {
+                filter = filter + "'" + category + "',"; 
+            });
+            filter = filter.slice(0,-1);
+            filter = filter + ")"
+            filters.push(filter);
+        }
+
+    }
+
+    if(subcategories != null) {
+
+        if(!Array.isArray(subcategories)){
+            subcategories = [subcategories];
+        }
+
+        if(subcategories.length > 0) {
+            filter = "SubCategory IN (";
+            subcategories.forEach(subcategory => {
+                filter = filter + "'" + subcategory + "',"; 
+            });
+            filter = filter.slice(0,-1);
+            filter = filter + ")"
+            filters.push(filter);
+        }
+    }
+
+    if(brands != null) {
+
+        if(!Array.isArray(brands)){
+            brands = [brands];
+        }
+
+        if(brands.length > 0) {
+            filter = "Brand IN (";
+            brands.forEach(brand => {
+                filter = filter + "'" + brand + "',"; 
+            });
+            filter = filter.slice(0,-1);
+            filter = filter + ")"
+            filters.push(filter);
+        }
+    }
+
+    if(filters.length > 0) {
+        query = query + " WHERE ";
+        filters.forEach(filter => {
+            query = query + filter + " AND ";
+        })
+        query = query.slice(0,-5);
+    }
+
+    dbConn.query(query, (err, result) => {
         if (err) {
             console.log('Error while fetching products', err);
             res.status(500);
@@ -353,6 +420,5 @@ router.delete('/:Product_ID', async (req, res, next) => {
     });
 }
 );
-
 
 module.exports = router;
