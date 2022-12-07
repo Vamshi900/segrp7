@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Login </title>
+    <link rel="stylesheet" href="css/login.css">
+    <!-- favicon -->
+
+    <!-- header links -->
+    <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+
+</head>
+<body>
+        <!-- HEADER -->
+    <div id="1"></div>
+    <script>
+        load("header.html");
+        function load(url)
+        {
+            req = new XMLHttpRequest();
+            req.open("GET", url, false);
+            req.send(null);
+            document.getElementById(1).innerHTML = req.responseText;
+        }
+    </script>
+
+
+        <!-- LOGIN CONTAINER -->
+        <div class="box">
+            <h2>Login</h2>
+            <form>
+              <div class="inputBox">
+                <input type="text" name="" required>
+                <label>Username</label>
+              </div>
+              <div class="inputBox">
+                <input type="password" name="" required>
+                <label>Password</label>
+              </div>
+              <input class="submit" type="submit" value="Submit">
+              <a href="signup.html"><input class="register" type="submit" value="Register"></input></a>
+              <a href="#" style="color: white;">Forgot Password?</a>
+            </form>
+          </div>
+          
+</body>
+    <!-- FOOTER -->
+    
+
+
+</html>

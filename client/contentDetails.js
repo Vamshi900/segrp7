@@ -62,7 +62,7 @@ function dynamicContentDetails(ob)
     let h3ProductPreviewText = document.createTextNode('Product Preview')
     h3ProductPreviewDiv.appendChild(h3ProductPreviewText)
     productPreviewDiv.appendChild(h3ProductPreviewDiv)
-    // rpeate product iamge 5 times
+    // repeated product image 5 times
     let imgArr = [ob.Product_Image,ob.Product_Image,ob.Product_Image,ob.Product_Image,ob.Product_Image]
     let i;
     for(i=0; i<imgArr.length; i++)
