@@ -7,6 +7,7 @@ const cart = require("./cart/cart.routes");
 const reviews = require("./reviews/reviews.routes");
 const payment = require("./payment_details/payments.routes");
 const auth = require("./auth/auth.routes");
+const filteroptions = require("./filteroptions/filteroptions.routes");
 
 
 
@@ -28,6 +29,7 @@ router.use('/cart', cart);
 router.use('/reviews', reviews);
 router.use('/payment_gateway', payment);
 router.use('/auth', auth);
+router.use('/filteroptions', filteroptions);
 
 
 
