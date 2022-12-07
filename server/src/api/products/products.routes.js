@@ -15,7 +15,7 @@ router.get('/:Product_ID', async (req, res, next) => {
                     res.json({ "error": { "message": "Internal Server Error", "code": "500" } });
                 }
                 else {
-                    console.log(JSON.stringify(result));
+                    console.log(result);
                     res.json(result);
                 }
             });
