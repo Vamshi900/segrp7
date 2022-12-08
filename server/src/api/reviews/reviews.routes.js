@@ -33,7 +33,7 @@ router.get('/getallreviews', async(req, res, next) =>{
 
 // // get all reviews for a product
 // // input: Product_ID
-router.get('/allreviews/:Prodcut_ID', async(req, res, next) =>{
+router.get('/allreviews/:Product_ID', async(req, res, next) =>{
     // safe guard against sql injection
     // validate input
     // check if product exists
