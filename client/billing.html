@@ -14,6 +14,7 @@
 
 </head>
 <body>
+    <a href="index.html"><p onclick="index.html">GO BACK</p></a>
         <!-- HEADER -->
     <!-- <div id="1"></div>
     <script>
@@ -70,23 +71,7 @@
             <input type="text" name="address" id="address2" placeholder="Optional">
             <label for="city">Town / City</label>
             <input type="text" name="city" id="city" required>
-            <div class="width50 padright">
-                <label for="province">Province</label>
-                <select name="province" id="province" required>
-                    <option value="">Please select a province</option>
-                    <option value="ab">Alberta</option>
-                    <option value="bc">British Columbia</option>
-                    <option value="mb">Manitoba</option>
-                    <option value="nb">New Brunswick</option>
-                    <option value="nl">Newfoundland and Labrador</option>
-                    <option value="ns">Nova Socia</option>
-                    <option value="on">Ontario</option>
-                    <option value="pe">Prince Edward Island</option>
-                    <option value="qc">Quebec</option>
-                    <option value="sk">Saskatchewan</option>
-                    <option value="not-canada">Not Canada</option>
-                </select>
-            </div>
+
             <div class="width50">
                 <label for="postcode">Postcode</label>
                 <input type="text" name="postcode" id="postcode" placeholder="Postcode / Zip" required>
@@ -124,21 +109,14 @@
 
             <div>
                 <h3 class="topborder"><span>Payment Method</span></h3>
-                <input type="radio" value="banktransfer" name="payment" checked><p>Direct Bank Transfer</p>
+                <input type="radio" value="banktransfer" name="payment" checked><p>Pay on Delivery</p>
                 <p class="padleft">
-                    Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won't be shipped until the funds have cleared in our account.
+                    
                 </p>
             </div>
 
-            <div><input type="radio" value="cheque" name="payment"><p>Cheque Payment</p></div>
-            <div>
-                <input type="radio" value="paypal" name="payment"><p>Paypal</p>
-                <fieldset class="paymenttypes">
-                    <legend><img src="images/pay-pal.jpg" alt="PayPal Logo" class="paypal"></legend>
-                    <img src="images/cards.jpg" alt="Visa, Mastercard, Maestro and Amex Credit Cards" class="cards">
-                </fieldset>
-                <a href="#" class="padleft">What is Paypal?</a>
-            </div>
+            <div><input type="radio" value="cheque" name="payment"><p>Credit Card Payment</p></div>
+
             <input type="submit" name="submit" value="Place Order" class="redbutton">
         </div>
     </form>
