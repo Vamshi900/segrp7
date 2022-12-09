@@ -288,6 +288,7 @@ router.post('/', async (req, res, next) => {
         });
     }
 
+    const Product_ID = Math.floor(100000 + Math.random() * 900000);
 
     let Product_Name = req.body.Product_Name;
     let Brand = req.body.Brand;
@@ -299,13 +300,16 @@ router.post('/', async (req, res, next) => {
     let User_ID = req.body.User_ID;
     let Product_Image = req.body.Product_Image;
     let Tags = req.body.Tags;
-    let Product = { Product_Name: Product_Name, Brand: Brand, Availability: Availability, Quantity: Quantity, Category: Category, SubCategory: SubCategory, Price: Price, User_ID: User_ID, Product_Image: Product_Image, Tags: Tags };
+    let Product_description = req.body.Product_Description;
+    let Product = { Product_ID: Product_ID, Product_Name: Product_Name, Brand: Brand, Availability: Availability, Quantity: Quantity, Category: Category, SubCategory: SubCategory, Price: Price, User_ID: User_ID, Product_Image: Product_Image, Tags: Tags, Product_description: Product_description };
     dbConn.query('INSERT INTO Product SET ?', Product, (err, result) => {
         if (err) {
             console.log('Error while inserting data', err);
         } else {
             console.log(JSON.stringify(result));
-            res.json(result);
+            res.json({
+                message: "product added successfully"
+            });
         }
     });
 }
@@ -415,7 +419,9 @@ router.delete('/:Product_ID', async (req, res, next) => {
             console.log('Error while deleting data', err);
         } else {
             console.log(JSON.stringify(result));
-            res.json(result);
+            res.json({
+                message: "producted deleted"
+            });
         }
     });
 }

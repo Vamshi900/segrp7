@@ -16,7 +16,6 @@ const dbConn = require('../../dbconnection.js');
 // add new payment details
 // should mimick payment gateway flow
 
-// get provider payment gateway
 // api mimicking payment gateway
 // verfyJWT
 const verifyJWT = require('../../middleware/verifyJWT.js');
@@ -127,13 +126,19 @@ router.post('/payment', async (req, res, next) => {
             }
         }
     });
-    res.json({ "response": "sucess" });
+    res.json({
+        "message": "payment processed",
+        "payment_gateway": {
+            "1": "approve",
+            "2": "decline"
+        }
+    });
 });
 
 // approve payment
 // post request
-// input: user_id, amount, currency, method, status
-router.post('/approve', async (req, res, next) => {
+// input: user_id, amount
+router.post('/approve', async(req, res, next) =>{
     // safe guard against sql injection
     // validate input
     // check if user exists
@@ -147,22 +152,7 @@ router.post('/approve', async (req, res, next) => {
             message: "amount can not be empty"
         });
     }
-    if (!req.body.currency) {
-        return res.status(400).send({
-            message: "currency can not be empty"
-        });
-    }
-    if (!req.body.method) {
-        return res.status(400).send({
-            message: "method can not be empty"
-        });
-    }
-    if (!req.body.status) {
-        return res.status(400).send({
-            message: "status can not be empty"
-        });
 
-    }
     // check if user exists
     dbConn.query('SELECT * FROM User WHERE User_ID=?', req.body.user_id, (err, result) => {
         if (err) {
@@ -177,22 +167,18 @@ router.post('/approve', async (req, res, next) => {
         }
     });
 
-
     let user_id = req.body.user_id;
     let amount = req.body.amount;
-    let currency = req.body.currency;
-    let method = req.body.method;
-    let status = req.body.status;
-    let created_at = new Date();
-    let updated_at = new Date();
+    const payment_id = Math.floor(100000 + Math.random() * 900000);
 
-
-    dbConn.query('INSERT INTO payment_details (user_id, amount, currency, method, status, created_at, updated_at) VALUES (?,?,?,?,?,?,?)', [user_id, amount, currency, method, status, created_at, updated_at], (err, result) => {
-        if (err) {
+    dbConn.query('INSERT INTO Payment (User_ID, Payment_ID, amount) VALUES (?,?,?)', [user_id, payment_id, amount], (err, result)=>{
+        if(err){
             console.log('Error while adding payment details', err);
         } else {
             console.log(JSON.stringify(result));
-            res.json(result);
+            res.json({
+                "message": "payment successful"
+            });
         }
     });
 }
