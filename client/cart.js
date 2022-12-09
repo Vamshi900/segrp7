@@ -10,13 +10,11 @@ function checkLoginStatus() {
         return true;
     }
 }
-
+var userID=null
 if(checkLoginStatus()){
 userID=localStorage.getItem("user_id")
 }
-else{
-    userID=null
-}
+
 
 
 var subTotal=0
@@ -51,7 +49,7 @@ function displayItem(product){
     var productid=product.Product_ID
     var quantity=product.Quantity
 
-    var cart= `<tr>
+    var cart= `<tr id=${productid}>
     <td>
       <div class="cart-info">
         <img src=${image} alt="" />
@@ -59,7 +57,7 @@ function displayItem(product){
           <p>${name}</p>
           <small>Price  ${price}</small>
           <br />
-          <a href="#">Remove</a>
+          <a onclick="removeitem(${productid})" href="#">Remove</a>
         </div>
       </div>
     </td>
@@ -69,10 +67,20 @@ function displayItem(product){
    `
    return cart;
 }
+
+function removeitem(productid){
+    document.getElementById(`${productid}`).innerHTML=``
+    calculateSubTotal(document.getElementsByClassName("prices"))
+    if(subTotal==0){
+        document.getElementById("cartpage").innerHTML=`<p>Your Cart is Empty</p>`
+    }
+
+}
 function updatePrice(value,price,productid){
     var cost = parseInt(value.value)*parseInt(price);
     document.getElementById(`${productid}-price`).innerHTML=`${cost}`
     calculateSubTotal(document.getElementsByClassName("prices"))
+    
 }
 
 function calculateSubTotal(priceArray){
@@ -80,6 +88,7 @@ function calculateSubTotal(priceArray){
     for(p=0;p<priceArray.length;p++){
     sum=sum+parseInt(priceArray[p].innerHTML)
     }
+    subTotal=sum
     document.getElementById("subTotal").innerHTML=`$${sum}`
     document.getElementById("tax").innerHTML=`$${sum*0.10}`
     document.getElementById("total").innerHTML=`$${sum-(sum*0.1)}`
