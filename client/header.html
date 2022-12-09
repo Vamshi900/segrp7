@@ -163,11 +163,12 @@
                         
                         <div class="dropdown-content">
                           <p id ="login-btn" href="login.html">Login</p>
-                          <p id="logout-btn" href="logout.html">Logout</p>
+                          <p id="logout-btn" href="LoggedOut.html">Logout</p>
                           <script>
                             if (localStorage.getItem("token") != null) {
                               console.log("token is not null");
                               document.getElementById("login-btn").style.display = "none";
+                              
                             } else {
                               document.getElementById("logout-btn").style.display = "none";
                             }

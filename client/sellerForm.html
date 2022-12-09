@@ -11,7 +11,7 @@
     <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 
-    <!-- <link rel="stylesheet" href="css/orderPlaced.css"> -->
+    <link rel="stylesheet" href="css/addProd.css">
 </head>
 <body>  
     <!-- HEADER -->
@@ -28,34 +28,53 @@
     </script>
 
     <!-- SELLER -->
- <div class="SellerForm" style="padding-top:100px">
-    <form class="jumbotron">
-        <input placeholder="Product Name"/>
-    </form>
-
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Product Name</label>
-        <input type="Text" class="form-control" id="exampleFormControlInput1" placeholder="Product Name">
-      </div>
-
-
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Brand</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Brand">
-      </div>
-
-
-      <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-      </div>
-
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Brand</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-      </div>
-
- </div>
+    <div class="container" style="padding-top: 100px;">  
+      <form id="contact" action="" method="post">
+        <h3>Add Product</h3>
+        <hr>
+        <fieldset>
+          <input placeholder="Product ID" type="text" tabindex="1" required autofocus>
+        </fieldset>
+        <fieldset>
+          <input placeholder="Product name" type="text" tabindex="1" required autofocus>
+        </fieldset>
+        <fieldset>
+          <input placeholder="Brand" type="text" tabindex="2" required>
+        </fieldset>
+        <fieldset>
+          <input placeholder="Availability" type="text" tabindex="2" required>
+        </fieldset>
+        <fieldset>
+          <input placeholder="Quantity" type="number" tabindex="2" required>
+        </fieldset>
+        <fieldset>
+          <input placeholder="Category" type="text" tabindex="2" required>
+        </fieldset>
+        <fieldset>
+          <input placeholder="SubCategory" type="text" tabindex="2" required>
+        </fieldset>
+        <fieldset>
+          <input placeholder="Price" type="text" tabindex="2" required>
+        </fieldset>
+        <fieldset>
+          <input placeholder="User ID" val="1000" type="text" tabindex="2" hidden>
+        </fieldset>
+        <fieldset>
+          <input placeholder="Product Image" type="url" tabindex="4" required>
+        </fieldset>
+        <fieldset>
+          <input placeholder="Tags" type="text" tabindex="2" required>
+        </fieldset>
+        <fieldset>
+          <input placeholder="Description" type="text" tabindex="3" required>
+        </fieldset>
+        <fieldset>
+          <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+        </fieldset>
+      </form>
+     
+      <br><br><br>
+    </div>
         <!-- FOOTER -->
         <div id="4"></div>
         <script>
