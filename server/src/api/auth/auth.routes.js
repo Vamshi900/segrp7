@@ -13,14 +13,12 @@ const path = require('path');
 const fsPromises = require('fs').promises;
 
 const handleLogin = async (req, res) => {
-    console.log(req.body);
     const { user, password } = req.body;
     if (!user || !password) return res.status(400).json({ 'message': 'Username and password are required.' });
     // verify user exists in database
     dbConn.query('SELECT * FROM User WHERE Primary_Email_Id=?', user, (err, loggedUser) => {
         if (err) return res.status(400).json({ 'message': 'Error ' });
         if (loggedUser.length === 0) return res.status(400).json({ 'message': 'User does not exist' });
-        console.log(loggedUser);
         // verify password
         bcrypt.compare(password, loggedUser[0].Password, (err, result) => {
             // if (err) return res.status(400).json({ 'message': 'Error passwords dont match' });

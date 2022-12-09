@@ -9,14 +9,11 @@ const verifyJWT = (req, res, next) => {
         token,
         process.env.JWT_SECRET,
         (err, decoded) => {
-            console.log('err', err);
             if (err) return res.sendStatus(403); //invalid token
             // console.log('decoded', decoded);
 
             req.user = decoded.user;
             req.role = decoded.role;
-            console.log('decoded', req.user, req.role);
-            console.log('calling next(')
             next();
         }
     );
