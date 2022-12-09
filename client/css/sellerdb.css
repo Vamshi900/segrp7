@@ -208,7 +208,7 @@ div.user-image {
 #content {
     float: left;
     width: calc(100% - 210px);
-    height: 70%;
+    height: 100%;
     word-wrap: break-word;
     background: #FFFFFF;
     font-family: Raleway, sans-serif;

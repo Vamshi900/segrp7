@@ -1,21 +1,12 @@
 body {
-  /******************************************************************
-  This contains the font, Internet Explorer fall back options and 
-  the background color for all of the sites
-  ******************************************************************/
   background: #c3e6f3 no-repeat center center fixed;
   margin: 0 auto;
   font-family: "Lucida Sans Unicode", "Lucida Grande", "sans-serif";
-  /* IE Fallback */
+
   background: #c3e6f4;
   width: 100%;
   height: 100%;
 }
-/******************************************************************
-Below is the code for the red and blue button class which will be 
-for all of the buttons in the program including the submit, next,
-cancel, etc. 
-******************************************************************/
 
 .blueButton {
   -moz-box-shadow: inset 0px -3px 7px 0px #29bbff;
@@ -44,10 +35,6 @@ cancel, etc.
   position: relative;
   top: 1px;
 }
-
-/******************************************************************
-Below is the code for the confirm order page, it displays the material ID and cost of the order
-******************************************************************/
 
 .payment input[type="text"] {
   width: 95%;
@@ -80,10 +67,6 @@ Below is the code for the confirm order page, it displays the material ID and co
   margin-top: 20px;
   box-shadow: 1px 1px 5px #888888;
 }
-
-/******************************************************************
-Below is the form for the confirm order table 
-******************************************************************/
 
 /* CSS for Credit Card Payment form */
 .credit-card-box .panel-title {
