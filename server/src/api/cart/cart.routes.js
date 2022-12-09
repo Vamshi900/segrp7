@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const dbConn = require('../../dbconnection.js');
+const verifyJWT = require('../../middleware/verifyJWT.js');
+const verifyRoles = require('../../middleware/verifyRoles.js');
 
 //[cart] Routes
 // User_ID. INT
@@ -14,7 +16,7 @@ const dbConn = require('../../dbconnection.js');
 // add to cart
 // post request
 // input: user_id, product_id, quantity
-router.post('/addtocart', async (req, res, next) => {
+router.post('/addtocart', verifyJWT, verifyRoles("ua"), async (req, res, next) => {
     // safe guard against sql injection
     // validate input
     // check if user exists
@@ -72,7 +74,7 @@ router.post('/addtocart', async (req, res, next) => {
 // delete from cart
 // delete request
 // input: user_id, product_id
-router.delete('/deletefromcart', async (req, res, next) => {
+router.delete('/deletefromcart', verifyJWT, verifyRoles("ua"), async (req, res, next) => {
     // safe guard against sql injection
     // validate input
     // check if user exists
@@ -121,7 +123,7 @@ router.delete('/deletefromcart', async (req, res, next) => {
 // update quantity
 // put request
 // input: user_id, product_id, quantity
-router.put('/updatequantity', async (req, res, next) => {
+router.put('/updatequantity', verifyJWT, verifyRoles("ua"), async (req, res, next) => {
     // safe guard against sql injection
     // validate input
     // check if user exists
@@ -174,8 +176,9 @@ router.put('/updatequantity', async (req, res, next) => {
 // get cart
 // get request
 // input: user_id
-router.get('/:user_id', async (req, res, next) => {
+router.get('/:user_id', verifyJWT, verifyRoles("ua"), async (req, res, next) => {
     let user_id = req.params.user_id;
+    
 
     // safe guard against sql injection
     // validate input
@@ -185,6 +188,14 @@ router.get('/:user_id', async (req, res, next) => {
             message: "user_id can not be empty"
         });
     }
+    // user can only chedk his own cart
+    // admin can check any user's cart
+    if (!"ua".includes(req.role) && user_id != req.user_id) {
+        return res.status(400).send({
+            message: "user can only check his own cart"
+        });
+    }
+
     // check if user exists
     dbConn.query('SELECT * FROM User WHERE User_ID=?', user_id, (err, result) => {
         if (err) {
@@ -204,20 +215,27 @@ router.get('/:user_id', async (req, res, next) => {
                 data: result
             });
         }
-        // get cart
-        // dbConn.query('SELECT * FROM Cart WHERE User_ID=?', user_id, (err, result) => {
-        //     if (err) {
-        //         return res.status(400).send({
-        //             message: "cart is empty"
-        //         });
-        //   
+            // get cart
+            // dbConn.query('SELECT * FROM Cart WHERE User_ID=?', user_id, (err, result) => {
+            //     if (err) {
+            //         return res.status(400).send({
+            //             message: "cart is empty"
+            //         });
+            //   
         );
     });
 }
 );
 
-router.post('/checkout/:user_id', async (req, res, next) => {
+router.post('/checkout/:user_id', verifyJWT, verifyRoles("ua"), async (req, res, next) => {
     let user_id = req.params.user_id;
+        // user can only chedk his own cart
+    // admin can check any user's cart
+    if (!"ua".includes(req.role) && user_id != req.user_id) {
+        return res.status(400).send({
+            message: "user can only check his own cart"
+        });
+    }
 
     // safe guard against sql injection
     // validate input

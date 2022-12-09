@@ -8,6 +8,7 @@ const reviews = require("./reviews/reviews.routes");
 const payment = require("./payment_details/payments.routes");
 const auth = require("./auth/auth.routes");
 const filteroptions = require("./filteroptions/filteroptions.routes");
+const pay= require("./payment_details/paypal.routes");
 
 
 
@@ -30,6 +31,8 @@ router.use('/reviews', reviews);
 router.use('/payment_gateway', payment);
 router.use('/auth', auth);
 router.use('/filteroptions', filteroptions);
+// verifyJWT
+router.use('/pay',pay);
 
 
 

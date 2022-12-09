@@ -20,8 +20,9 @@ const dbConn = require('../../dbconnection.js');
 // api mimicking payment gateway
 // verfyJWT
 const verifyJWT = require('../../middleware/verifyJWT.js');
+const verifyRoles = require('../../middleware/verifyRoles.js');
 
-router.get('/payment_gateway', verifyJWT,async (req, res, next) => {
+router.get('/payment_gateway', verifyJWT,verifyRoles("usa"),async (req, res, next) => {
     
         // return options for payment gateway
         // 1. approve 
@@ -37,7 +38,7 @@ router.get('/payment_gateway', verifyJWT,async (req, res, next) => {
 
 // payment details from the user 
 // input: user_id, amount, first_name, last_name, card number, expiration date, cvv, billing address, save card
-router.post('/payment', async (req, res, next) => {
+router.post('/payment',verifyJWT,verifyRoles("usa"), async (req, res, next) => {
     //check if required parameters are present
     if (!req.body.user_id) {
         return res.status(400).send({
@@ -133,7 +134,7 @@ router.post('/payment', async (req, res, next) => {
 // approve payment
 // post request
 // input: user_id, amount, currency, method, status
-router.post('/approve', async (req, res, next) => {
+router.post('/approve',verifyJWT,verifyRoles("usa"), async (req, res, next) => {
     // safe guard against sql injection
     // validate input
     // check if user exists
@@ -202,7 +203,7 @@ router.post('/approve', async (req, res, next) => {
 // reject payment
 // post request
 // input: user_id, amount,
-router.post('/reject', async (req, res, next) => {
+router.post('/reject',verifyJWT,verifyRoles("usa"), async (req, res, next) => {
     // safe guard against sql injection
     // validate input
     if (!req.body.user_id) {
