@@ -35,14 +35,9 @@
           <!-- cart items details -->
           
           <div class="small-container cart-page">
-            <table>
-              <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Subtotal</th>
-              </tr>
-          
-              <tr>
+            <table id="cartTable">
+            
+              <!-- <tr>
                 <td>
                   <div class="cart-info">
                     <img src="https://i.ibb.co/B3vYjvw/buy-1.jpg" alt="" />
@@ -71,8 +66,8 @@
                 </td>
                 <td><input type="number" value="1" /></td>
                 <td>$150.00</td>
-              </tr>
-              <tr>
+              </tr> -->
+              <!-- <tr>
                 <td>
                   <div class="cart-info">
                     <img src="https://i.ibb.co/NyYtY31/buy-3.jpg" alt="" />
@@ -86,22 +81,32 @@
                 </td>
                 <td><input type="number" value="1" /></td>
                 <td>$1500.00</td>
-              </tr>
+              </tr> -->
             </table>
+
+            <div class="row" id="coupon-check"></div>
+              
+          <div id="couponform" class="row" style="padding-left: 100px;">
+              
+          </div>
+          
           
             <div class="total-price">
               <table>
                 <tr>
                   <td>Subtotal</td>
-                  <td>$3500.00</td>
+                  <td id="subTotal"></td>
+                </tr>
+                <tr id="discount"> 
+                  
                 </tr>
                 <tr>
                   <td>Tax</td>
-                  <td>$15.00</td>
+                  <td id="tax"></td>
                 </tr>
                 <tr>
                   <td>Total</td>
-                  <td>$3515.00</td>
+                  <td id ="total"></td>
                 </tr>
               </table>
               <br>

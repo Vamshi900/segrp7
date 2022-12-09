@@ -114,8 +114,8 @@ function dynamicContentDetails(ob)
         
         addToCartRequest.open('POST', 'http://localhost:5001/api/v1/cart/addtocart', true)
         addToCartRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        addToCartRequest.setRequestHeader('Authorization','Bearer ' + value );
-        addToCartRequest.send(JSON.stringify({user_id:"b15dd08c-0",product_id:id,quantity:1}));
+        addToCartRequest.setRequestHeader('Authorization','Bearer ' + value );  //NEED TO CHANGE
+        addToCartRequest.send(JSON.stringify({user_id:"b15dd08c-0",product_id:id,quantity:1})); //NEED TO CHANGE
 {
     addToCartRequest.onreadystatechange = function()
     {

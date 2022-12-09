@@ -1,132 +1,127 @@
 console.clear();
+var userID="b15dd08c-0"
 
-if(document.cookie.indexOf(',counter=')>=0)
-{
-    let counter = document.cookie.split(',')[1].split('=')[1]
-    document.getElementById("badge").innerHTML = counter
+var subTotal=0
+function dynamicCartSection(cartItems){
+    var cart=document.getElementById("cartTable")
+    var cartRowHTML=` <tr>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Subtotal</th>
+  </tr>`
+    for(let i=0;i<cartItems.length;i++){
+        cartRow=cartItems[i]
+        subTotal=subTotal+cartRow.Price*cartRow.Quantity
+        cartRowHTML=cartRowHTML+ displayItem(cartRow)
+        
+    }
+    document.getElementById("subTotal").innerHTML=`$${subTotal}`
+    document.getElementById("tax").innerHTML=`$${subTotal*0.1}`
+    document.getElementById("total").innerHTML=`$${subTotal-subTotal*0.1}`
+    cart.innerHTML=cartRowHTML
+
 }
 
+function displayItem(product){
+    var name=product.Product_Name
+    var price=product.Price
+    var image=product.Product_Image.split(",")[0]
+    var productid=product.Product_ID
+    var quantity=product.Quantity
 
-let cartContainer = document.getElementById('cartContainer')
-
-let boxContainerDiv = document.createElement('div')
-boxContainerDiv.id = 'boxContainer'
-
-// DYNAMIC CODE TO SHOW THE SELECTED ITEMS IN YOUR CART
-function dynamicCartSection(ob,itemCounter)
-{
-    let boxDiv = document.createElement('div')
-    boxDiv.id = 'box'
-    boxContainerDiv.appendChild(boxDiv)
-
-    let boxImg = document.createElement('img')
-    boxImg.src = ob.preview
-    boxDiv.appendChild(boxImg)
-
-    let boxh3 = document.createElement('h3')
-    let h3Text = document.createTextNode(ob.name + ' × ' + itemCounter)
-    // let h3Text = document.createTextNode(ob.name)
-    boxh3.appendChild(h3Text)
-    boxDiv.appendChild(boxh3)
-
-    let boxh4 = document.createElement('h4')
-    let h4Text = document.createTextNode('Amount: $' + ob.Price)
-    boxh4.appendChild(h4Text)
-    boxDiv.appendChild(boxh4)
-
-    // console.log(boxContainerDiv);
-
-    buttonLink.appendChild(buttonText)
-    cartContainer.appendChild(boxContainerDiv)
-    cartContainer.appendChild(totalContainerDiv)
-    // let cartMain = document.createElement('div')
-    // cartmain.id = 'cartMainContainer'
-    // cartMain.appendChild(totalContainerDiv)
-
-    return cartContainer
+    var cart= `<tr>
+    <td>
+      <div class="cart-info">
+        <img src=${image} alt="" />
+        <div>
+          <p>${name}</p>
+          <small>Price  ${price}</small>
+          <br />
+          <a href="#">Remove</a>
+        </div>
+      </div>
+    </td>
+    <td><input type="number" min="1" value="${quantity}" onchange="updatePrice(this,${price},${productid})" /></td>
+    <td id="${productid}-price" class="prices">${price*quantity}</td>
+    </tr>
+   `
+   return cart;
+}
+function updatePrice(value,price,productid){
+    var cost = parseInt(value.value)*parseInt(price);
+    document.getElementById(`${productid}-price`).innerHTML=`${cost}`
+    calculateSubTotal(document.getElementsByClassName("prices"))
 }
 
-let totalContainerDiv = document.createElement('div')
-totalContainerDiv.id = 'totalContainer'
+function calculateSubTotal(priceArray){
+    sum=0
+    for(p=0;p<priceArray.length;p++){
+    sum=sum+parseInt(priceArray[p].innerHTML)
+    }
+    document.getElementById("subTotal").innerHTML=`$${sum}`
+    document.getElementById("tax").innerHTML=`$${sum*0.10}`
+    document.getElementById("total").innerHTML=`$${sum-(sum*0.1)}`
 
-let totalDiv = document.createElement('div')
-totalDiv.id = 'total'
-totalContainerDiv.appendChild(totalDiv)
-
-let totalh2 = document.createElement('h2')
-let h2Text = document.createTextNode('Total Amount')
-totalh2.appendChild(h2Text)
-totalDiv.appendChild(totalh2)
-
-// TO UPDATE THE TOTAL AMOUNT
-function amountUpdate(amount)
-{
-    let totalh4 = document.createElement('h4')
-    // let totalh4Text = document.createTextNode(amount)
-    let totalh4Text = document.createTextNode('Amount: $ ' + amount)
-    totalh4Text.id = 'toth4'
-    totalh4.appendChild(totalh4Text)
-    totalDiv.appendChild(totalh4)
-    totalDiv.appendChild(buttonDiv)
-    console.log(totalh4);
 }
 
+//Coupuns
 
-let buttonDiv = document.createElement('div')
-buttonDiv.id = 'button'
-totalDiv.appendChild(buttonDiv)
+function couponcheck(){
+    document.getElementById("coupon-check").innerHTML=`
+    <div class="col-12 col">
+                  
+                  <div class="info-bar" style="padding-top: 10px;">
+                      <p><i class="fa fa-info"></i> 
+                          Have a coupon? <a onclick="couponform()" href="#">Click here to enter your code</a>
+                      </p>
+                  </div>
+              </div>
+    `
+}
+couponcheck()
 
-let buttonTag = document.createElement('button')
-buttonDiv.appendChild(buttonTag)
-
-let buttonLink = document.createElement('a')
-buttonLink.href = '/orderPlaced.html?'
-buttonTag.appendChild(buttonLink)
-
-buttonText = document.createTextNode('Place Order')
-buttonTag.onclick = function()
-{
-    console.log("clicked")
-}  
-//dynamicCartSection()
-// console.log(dynamicCartSection());
+function couponform(){
+    document.getElementById("couponform").innerHTML=`
+    <div class="col-6 col coupon">
+                  <form method="get">
+                      <input type="text" name="coupon" id="coupon" placeholder="Coupon code">
+                      <div class="float-end mt-2 pt-1">
+                        <button onClick="submitHandler()" class="btn btn-success btn-sm">Apply Coupon</button>
+                    <button type="button" onclick="cancelhandler()" class="btn btn-outline-success btn-sm">Cancel</button>
+           </div>
+                  </form>
+              </div>
+    `
+}
+var discount=50
+function cancelhandler(){
+    document.getElementById("couponform").innerHTML=``
+}
+function submitHandler(){
+    cancelhandler()
+    document.getElementById("discount").innerHTML=`
+    <td>Discount</td>
+                  <td>-${discount}</td>
+                  `
+                  document.getElementById("tax").innerHTML=`$${(sum-discount)*0.10}`
+                  document.getElementById("total").innerHTML=`$${(sum-discount)-((sum-discount)*0.1)}`
+}
 
 // BACKEND CALL
+let cartProducts=[]
 let httpRequest = new XMLHttpRequest()
 let totalAmount = 0
 httpRequest.onreadystatechange = function()
 {
-    if(this.readyState === 4)
+    if(this.readyState == 4)
     {
         if(this.status == 200)
         {
-            // console.log('call successful');
+             console.log('call successful');
             contentTitle = JSON.parse(this.responseText)
-
-            let counter = Number(document.cookie.split(',')[1].split('=')[1])
-            document.getElementById("totalItem").innerHTML = ('Total Items: ' + counter)
-
-            let item = document.cookie.split(',')[0].split('=')[1].split(" ")
-            console.log(counter)
-            console.log(item)
-
-            let i;
-            let totalAmount = 0
-            for(i=0; i<counter; i++)
-            {
-                let itemCounter = 1
-                for(let j = i+1; j<counter; j++)
-                {   
-                    if(Number(item[j]) == Number(item[i]))
-                    {
-                        itemCounter +=1;
-                    }
-                }
-                totalAmount += Number(contentTitle[item[i]-1].price) * itemCounter
-                dynamicCartSection(contentTitle[item[i]-1],itemCounter)
-                i += (itemCounter-1)
-            }
-            amountUpdate(totalAmount)
+            items=contentTitle.data
+            cartProducts=items
+            dynamicCartSection(items)
         }
     }
         else
@@ -135,7 +130,7 @@ httpRequest.onreadystatechange = function()
         }
 }
 
-httpRequest.open('GET', 'https://5d76bf96515d1a0014085cf9.mockapi.io/product', true)
+httpRequest.open('GET', `http://localhost:5001/api/v1/cart/${userID}`, true)
 httpRequest.send()
 
 
