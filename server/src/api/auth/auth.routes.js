@@ -13,27 +13,30 @@ const path = require('path');
 const fsPromises = require('fs').promises;
 
 const handleLogin = async (req, res) => {
-    const { user, pwd } = req.body;
-    if (!user || !pwd) return res.status(400).json({ 'message': 'Username and password are required.' });
+    console.log(req.body);
+    const { user, password } = req.body;
+    if (!user || !password) return res.status(400).json({ 'message': 'Username and password are required.' });
     // verify user exists in database
-    dbConn.query('SELECT * FROM User WHERE Primary_Email_Id=?', user, (err, result) => {
+    dbConn.query('SELECT * FROM User WHERE Primary_Email_Id=?', user, (err, loggedUser) => {
         if (err) return res.status(400).json({ 'message': 'Error ' });
-        if (result.length === 0) return res.status(400).json({ 'message': 'User does not exist' });
+        if (loggedUser.length === 0) return res.status(400).json({ 'message': 'User does not exist' });
+        console.log(loggedUser);
         // verify password
-        bcrypt.compare(pwd, result[0].Password, (err, result) => {
+        bcrypt.compare(password, loggedUser[0].Password, (err, result) => {
             // if (err) return res.status(400).json({ 'message': 'Error passwords dont match' });
+            
             if (result === false) return res.status(400).json({ 'message': 'Incorrect password' });
             // create token
-            const token = jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: '1h' });
+            const token = jwt.sign({ user,role: loggedUser[0].Role }, process.env.JWT_SECRET, { expiresIn: '10h' });
             // refresh token
-            const refreshToken = jwt.sign({ user }, process.env.JWT_SECRET_REFRESH, { expiresIn: '1d' });
+            const refreshToken = jwt.sign({ user,role: loggedUser[0].Role  }, process.env.JWT_SECRET_REFRESH, { expiresIn: '1d' });
             // store refresh token in database
             dbConn.query('UPDATE User SET refreshtoken=? WHERE Primary_Email_Id=?', [refreshToken, user], (err, result) => {
                 if (err) return res.status(400).json({ 'message': 'Error updating refresh token' });
                 // send token to client
                 res.cookie('token', token, { httpOnly: true });
                 res.cookie('refreshToken', refreshToken, { httpOnly: true });
-                res.status(200).json({ 'message': 'Login successful', 'token': token, 'refreshToken': refreshToken });
+                res.status(200).json({ 'message': 'Login successful', 'token': token, 'refreshToken': refreshToken, user_id: loggedUser[0].User_ID, role: loggedUser[0].Role });
             });
         });
     });
