@@ -15,7 +15,9 @@ function dynamicContents(ob) {
   let imgTag = document.createElement("img");
   // imgTag.id = 'image1'
   // imgTag.id = ob.photos
-  imgTag.src = ob.Product_Image;
+  // split by comma
+  imgTag.src = ob.Product_Image.split(',')[0]
+  // imgTag.src = ob.Product_Image;
 
   let detailsDiv = document.createElement("div");
   detailsDiv.id = "details";
@@ -67,12 +69,10 @@ httpRequest.onreadystatechange = function() {
       }
       for (let i = 0; i < contentTitle.length; i++) {
         if (contentTitle[i].isAccessory) {
-          console.log(contentTitle[i]);
           containerAccessories.appendChild(
             dynamicContents(contentTitle[i])
           );
         } else {
-          console.log(contentTitle[i]);
           contentContainer.appendChild(
             dynamicContents(contentTitle[i])
           );

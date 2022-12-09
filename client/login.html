@@ -11,6 +11,8 @@
     <!-- header links -->
     <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <script defer src="./login.js"></script>
+
 
 </head>
 <body>
@@ -27,25 +29,6 @@
         }
     </script>
 
-
-        <!-- LOGIN CONTAINER -->
-        <!-- <div class="box">
-            <h2>Login</h2>
-            <form>
-              <div class="inputBox">
-                <input type="text" name="" required>
-                <label>Username</label>
-              </div>
-              <div class="inputBox">
-                <input type="password" name="" required>
-                <label>Password</label>
-              </div>
-              <input class="submit" type="submit" value="Submit">
-              <a href="signup.html"><input class="register" type="submit" value="Register"></input></a>
-              <a href="#" style="color: white;">Forgot Password?</a>
-            </form>
-          </div> -->
-
           <div class="login-page">
             <div class="form">
               <form class="register-form">
@@ -55,11 +38,22 @@
                 <button>create</button>
                 <p class="message">Already registered? <a href="#">Sign In</a></p>
               </form>
-              <form class="login-form">
+              <!-- <form class="login-form">
                 <input type="text" placeholder="Email"/>
                 <input type="password" placeholder="Password"/>
                 <hr>
-                <button>login</button>
+                <button onclick="handleLogin()">login</button>
+
+                <p class="message">Not registered? <a href="signup.html">Create an account</a></p>
+              </form> -->
+              <div id="login-error-msg-holder">
+                <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
+              </div>
+
+              <form id="login-form">
+                <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username">
+                <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
+                <input type="submit" value="Login" id="login-form-submit">
                 <p class="message">Not registered? <a href="signup.html">Create an account</a></p>
               </form>
             </div>

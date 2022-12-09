@@ -192,10 +192,8 @@ router.get('/:user_id', async (req, res, next) => {
                 message: "user does not exist"
             });
         }
-        console.log('i am here');
         // get product details from product table and send to front end
         dbConn.query('SELECT * FROM Product WHERE Product_ID IN (SELECT Product_ID FROM Cart WHERE User_ID=?)', user_id, (err, result) => {
-            console.log(result);
             if (err) {
                 return res.status(400).send({
                     message: "cart is empty"
