@@ -28,51 +28,96 @@
     </script>
 
         <!-- SIGNUP CONTAINER -->
-        <div class="box" style="margin: 50px;;">
+        <div class="login-page" style="padding-top: 100px;">
+          <div class="form" >
+            <form class="login-form">
+              <p style="font-weight: 900px;"><b>SIGN UP</b></p>
+              <input type="email" placeholder="Primary Email address"required/>
+              <input type="email" placeholder="Alternate Email address"required/>
+              <input type="text" placeholder="Username"required/>
+              <label for="Gender">Gender:   </label>
+              <select type="text" placeholder="Gender" id="Gender" required>
+                <label for="Gender"></label>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="O">Other</option>
+            
+              </select>
+              <hr>
+              <label for="Gender">Date Of Birth:   </label>
+              <input type="date" placeholder="Date Of Birth"required/>
+              <input type="text" placeholder="Mobile"required/>
+              <input type="password" placeholder="Password"required/>
+              <input type="password" placeholder="Confirm Password"required/>
+              <hr>
+              <label for="Role">Role: </label>
+              <div placeholder="Role" id="Role" required>
+                <input type="radio" id="Buyer" value="B" name="B">Buyer</input>
+                <input type="radio" id="Seller" value="S"  name="B">Seller</input>
+                <input type="radio" id="Both" value="BS"  name="B">Both</input>
+              </div>
+              <button type="submit">Sign Up</button>
+              
+            </form>
+          </div>
+        </div>
+
+
+        <!-- <div class="box" style="margin-top: 100px;width: 800px;">
             <h2>Sign Up</h2>
-            <form>
+
+
+            <form action="POST">
               <div class="inputBox">
-                <input type="text" name="" required>
+                <input type="email" name="primary_email" required>
                 <label>Primary Email</label>
               </div>
               <div class="inputBox">
-                <input type="text" name="" required>
+                <input type="email" name="secondary_email" required>
                 <label>Secondary Email</label>
               </div>
               <div class="inputBox">
-                <input type="text" name="" required>
+                <input type="text" name="username" required>
                 <label>Username</label>
               </div>
               <div class="inputBox">
                 <label>Gender</label>
                 <select class="inputBox" style="padding-left: 20px;margin-left: 80px;margin-top: 10px;">
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Female">Other</option>
+                  <option value="M">Male</option>
+                  <option value="F">Female</option>
+                  <option value="O">Other</option>
                 </select>
                 <hr>
               </div>
               <div class="inputBox" style="margin-top:5px;">
                 <label>Date Of Birth</label>
-                <input type="date" name="DOB" style="margin-top: 30px;" placeholder="DOB" required>
-                
+                <input type="date" name="DOB" style="margin-top: 30px;"  placeholder="yyyy-mm-dd" value="" min="1997-01-01" max="2023-12-31" required> 
               </div>
               <div class="inputBox">
-                <input type="text" name="" required>
+                <input type="text" name="mobile" required>
+                <label>Mobile</label>
+              </div>
+              <div class="inputBox">
+                <input type="password" name="pwd" required>
                 <label>Create Password</label>
               </div>
               <div class="inputBox">
-                <input type="text" name="" required>
+                <input type="password" name="pwd" required>
                 <label>Confirm Password</label>
               </div>
 
               <input class="submit" type="submit" value="Submit">
             </form>
-          </div>
+
+
+          </div> -->
+          <br>
+          <br>
+          <br>
           
 </body>
     <!-- FOOTER -->
-    
+
 
 
 </html>

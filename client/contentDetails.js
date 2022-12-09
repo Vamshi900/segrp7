@@ -234,8 +234,8 @@ function renderReplyBox(reviewID){
    <form name="replyform-${reviewID}">
            <textarea name="replytext" class="form-control" id="textAreaExample" rows="4" style="background: #fff;"></textarea>
            <div class="float-end mt-2 pt-1">
-               <button type="button" onClick="submitReply(${reviewID})">Post reply</button>
-               <button type="button" onclick="cancelReply(${reviewID})" class="btn btn-outline-primary btn-sm">Cancel</button>
+               <button type="button" onClick="submitReply(${reviewID})" class="btn btn-success btn-sm">Post reply</button>
+               <button type="button" onclick="cancelReply(${reviewID})" class="btn btn-outline-success btn-sm">Cancel</button>
            </div>
     </form>
         
@@ -323,8 +323,8 @@ function renderReviewBox(){
        
            <textarea name="reviewtext" class="form-control" id="textAreaExample" rows="4" style="background: #fff;"></textarea>
            <div class="float-end mt-2 pt-1">
-               <button type="button" onClick="submitReview()" class="btn btn-primary btn-sm">Post review</button>
-               <button type="button" onclick="cancelHandler()" class="btn btn-outline-primary btn-sm">Cancel</button>
+               <button type="button" onClick="submitReview()" class="btn btn-success btn-sm">Post review</button>
+               <button type="button" onclick="cancelHandler()" class="btn btn-outline-success btn-sm">Cancel</button>
            </div>
     </form>
        

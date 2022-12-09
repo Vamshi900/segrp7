@@ -47,7 +47,7 @@
     </div>
 </div>
 <div class="row" style="padding-left: 100px;">
-    <form method="get">
+    <form >
         <div class="col-7 col">
             <h3 class="topborder"><span>Billing Details</span></h3>
             <label for="country">Country</label>
@@ -109,18 +109,28 @@
 
             <div>
                 <h3 class="topborder"><span>Payment Method</span></h3>
-                <input type="radio" value="banktransfer" name="payment" checked><p>Pay on Delivery</p>
+                <input type="radio" value="banktransfer" name="payment" value="0" checked><p>Pay on Delivery</p>
                 <p class="padleft">
                     
                 </p>
             </div>
 
-            <div><input type="radio" value="cheque" name="payment"><p>Credit Card Payment</p></div>
+            <div><input type="radio" value="cheque" name="payment" value="1"><p>Credit Card Payment</p></div>
 
-            <input type="submit" name="submit" value="Place Order" class="redbutton">
+            <input type="button" name="submit" onClick="redirectPayment()" value="Place Order" class="redbutton">
         </div>
     </form>
 </div>
 </div>
+<script>
+    function redirectPayment(value)
+    {
+        // if(value=="1")
+        // {window.location.replace("payment.html")}
+        // else
+        // window.location.replace("orderPlaced.html");
+
+    }
+</script>
 </body>
 </html>

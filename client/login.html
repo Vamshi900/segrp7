@@ -29,7 +29,7 @@
 
 
         <!-- LOGIN CONTAINER -->
-        <div class="box">
+        <!-- <div class="box">
             <h2>Login</h2>
             <form>
               <div class="inputBox">
@@ -44,6 +44,32 @@
               <a href="signup.html"><input class="register" type="submit" value="Register"></input></a>
               <a href="#" style="color: white;">Forgot Password?</a>
             </form>
+          </div> -->
+
+          <div class="login-page">
+            <div class="form">
+              <form class="register-form">
+                <input type="text" placeholder="name"/>
+                <input type="password" placeholder="password"/>
+                <input type="text" placeholder="email address"/>
+                <button>create</button>
+                <p class="message">Already registered? <a href="#">Sign In</a></p>
+              </form>
+              <form class="login-form">
+                <input type="text" placeholder="Email"/>
+                <input type="password" placeholder="Password"/>
+                <label for="Role">Role: </label>
+                <select type="text" placeholder="Role" id="Role" required>
+                  <option value="B">Buyer</option>
+                  <option value="S">Seller</option>
+                  <option value="A">Admin</option>
+                
+                </select>
+                <hr>
+                <button>login</button>
+                <p class="message">Not registered? <a href="signup.html">Create an account</a></p>
+              </form>
+            </div>
           </div>
           
 </body>

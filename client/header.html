@@ -68,6 +68,8 @@
                             
                           </div> -->
 
+                          <form id="filterFeature" action="" method="get">
+
                           <nav class="navbar navbar-expand-lg navbar-light bg-light">
                             <div class="container-fluid">
                               <ul class="navbar-nav">
@@ -118,8 +120,14 @@
                                         <li>
                                           <a class="dropdown-item" href="#">Submenu item 5</a>
                                         </li>
+                                        
                                       </ul>
                                     </li>
+                                    <li>
+                                      <a class="dropdown-item" href="#">All</a>
+                                      
+                                    </li>
+
                                   </ul>
                                 </li>
                               </ul>
@@ -138,9 +146,11 @@
                     
 <!-- //////////////////////// //////////////////////// //////////////////////// SEARCH SECTION //////////////////////// //////////////////////// -->
                     <div id="search">
-                        <i class="fas fa-search search"></i>
+                      
+                        <a href="index.html"><i class="fas fa-search search" onClick="redirectSearchCall()"></i></a>
                         
                         <input type="text" id="input" name="searchBox" placeholder="Search for SparkStore Electronics">
+                      </form>
 <!-- //////////////////////// //////////////////////// //////////////////////// //////////////////////// //////////////////////// ////////////////////////  -->
                     </div>
                     <!-- USER SECTION (CART AND USER ICON) -->
