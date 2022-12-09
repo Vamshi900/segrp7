@@ -40,54 +40,36 @@
     <br>
     <br>
         <!-- PAYMENT CONTAINER -->
-        <div class="container2" >
-    		<div class="colored">
-            </div>
-    		<div class="info" style="padding-top: 300px;">
-                <div class="price">
-                    <!-- Display total -->
-                    <span>$245.00</span>
-    
-                    <span style="padding-left: 50px;">Total</span>
-                    </div>
+        <form class="payment">
 
-    		</div>
-    		<div class="form">
-    			<h3>Payment Information</h3>
-    			<form action="" method="post">
-    				<label>PAYMENT METHOD</label>
-    				<span class="select"><select>
-    					<option value="VISA">VISA</option>
-    					<option value="MASTERCARD">MASTER CARD</option>
-    					<option value="AMERICAN EXPRESS">AMERICA EXPRESS</option>
-    				</select></span>
-    				<label>CARDHOLDER'S NAME</label>
-    				<input type="text" name="name">
-    				<label>CARD NUMBER</label>
-    				<input type="text" name="CCN">
-    				<span class="expiry">
-	    				<label>EXPIRATION DATE</label>
-						<span class="select"><select class="small">
-	    					<option value="MARCH">MARCH</option>
-	    					<option value="MASTERCARD">APRIL</option>
-	    					<option value="AMERICAN EXPRESS">MAY</option>
-	    				</select></span>
-	    				<span class="select"><select class="small">
-	    					<option value="2023">2023</option>
-	    					<option value="2024">2024</option>
-	    					<option value="2025">2025</option>
-	    				</select></span>
-	    			</span>
-	    			<span class="sec">
-	    				<LABEL>SECURITY CODE</LABEL>
-	    				<input type="number" name="sec" maxlength="3" />
-    				</span>
-
-    				<p>Your Credit Card Information Is Encrypted </p>
-    				<button>PURCHASE SAFELY</button>
-    			</form>
-    		</div>
-    	</div>
+			<body>
+				<div class="panel panel-default credit-card-box">
+					<div class="panel-heading display-table">
+						<div class="row display-tr">
+							<h3 class="panel-title display-td">Payment Details</h3>
+							
+						</div>
+					</div>
+				</div>
+				<br>
+				<label for="cardNumber">CARD NUMBER</label>
+				<input type="text" size="10" class="form-control" name="cardNumber" placeholder="Valid Card Number" autocomplete="cc-number" required autofocus />
+				<span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+				<label for="cardExpir">EXPIRATION DATE</label>
+				<input type="text" size="5" class="form-control" name="cardExpiry" placeholder="MM / YY" autocomplete="cc-exp" required />
+				<label for="cardCVC">CV CODE</label>
+				<input type="text" size="3" class="form-control" name="cardCVC" placeholder="CVC" autocomplete="cc-csc" required />
+				<label for="couponCode">CARD HOLDER NAME</label>
+				<input type="text" class="form-control" name="couponCode" />
+				<br>
+				<a href="orderPlaced.html">
+				<button class="blueButton" style="float:right;" type="button">Confirm Payment</button></a>
+				<br><br>
+		</form>
+		<!-- If you're using Stripe for payments -->
+		<!-- <script type="text/javascript" src="https://js.stripe.com/v2/"></script> -->
+		</form>
+		
 	</body>
     <!-- FOOTER -->
     

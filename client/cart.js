@@ -1,8 +1,30 @@
 console.clear();
-var userID="b15dd08c-0"
+
+function checkLoginStatus() {
+    console.log("checkLoginStatus");
+    if (localStorage.getItem("token") == null) {
+        console.log("token is null");
+        return false;
+    } else {
+        console.log("token is not null");
+        return true;
+    }
+}
+
+if(checkLoginStatus()){
+userID=localStorage.getItem("user_id")
+}
+else{
+    userID=null
+}
+
 
 var subTotal=0
 function dynamicCartSection(cartItems){
+    if(cartItems.length==0){
+    document.getElementById("cartpage").innerHTML=`<p>Your Cart is Empty</p>`
+return;}
+
     var cart=document.getElementById("cartTable")
     var cartRowHTML=` <tr>
     <th>Product</th>
@@ -78,7 +100,7 @@ function couponcheck(){
               </div>
     `
 }
-couponcheck()
+
 
 function couponform(){
     document.getElementById("couponform").innerHTML=`
@@ -108,9 +130,11 @@ function submitHandler(){
 }
 
 // BACKEND CALL
+if(userID!=null){
 let cartProducts=[]
+
+couponcheck()
 let httpRequest = new XMLHttpRequest()
-let totalAmount = 0
 httpRequest.onreadystatechange = function()
 {
     if(this.readyState == 4)
@@ -121,7 +145,10 @@ httpRequest.onreadystatechange = function()
             contentTitle = JSON.parse(this.responseText)
             items=contentTitle.data
             cartProducts=items
+            console.log(items)
+            
             dynamicCartSection(items)
+            
         }
     }
         else
@@ -133,6 +160,6 @@ httpRequest.onreadystatechange = function()
 httpRequest.open('GET', `http://localhost:5001/api/v1/cart/${userID}`, true)
 httpRequest.send()
 
-
+}
 
 

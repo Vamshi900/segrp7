@@ -9,6 +9,27 @@ if(document.cookie.indexOf(',counter=')>=0)
     document.getElementById("badge").innerHTML = counter
 }
 
+
+function checkLoginStatus() {
+    console.log("checkLoginStatus");
+    if (localStorage.getItem("token") == null) {
+        console.log("token is null");
+        return false;
+    } else {
+        console.log("token is not null");
+        return true;
+    }
+}
+
+if(checkLoginStatus()){
+userID=localStorage.getItem("user_id")
+value=localStorage.getItem("token")
+}
+else{
+    userID=null
+    value=null
+}
+
 function dynamicContentDetails(ob)
 {
     ob= ob[0];
@@ -114,14 +135,14 @@ function dynamicContentDetails(ob)
 //     "role": "2"
 // }
 
-        var value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWRiMnNzc3Nhc3Nzc3NzczBAZ21haWwuY29tIiwicm9sZSI6IjIiLCJpYXQiOjE2NzA1Njc3MDAsImV4cCI6MTY3MDYwMzcwMH0.FrLIcOrP_V0mECFqUWhZ5_ckEh-ugHRKiHJfCS6T7kY"
+       // var value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWRiMnNzc3Nhc3Nzc3NzczBAZ21haWwuY29tIiwicm9sZSI6IjIiLCJpYXQiOjE2NzA1Njc3MDAsImV4cCI6MTY3MDYwMzcwMH0.FrLIcOrP_V0mECFqUWhZ5_ckEh-ugHRKiHJfCS6T7kY"
         let addToCartRequest = new XMLHttpRequest()
 
         
         addToCartRequest.open('POST', 'http://localhost:5001/api/v1/cart/addtocart', true)
         addToCartRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         addToCartRequest.setRequestHeader('Authorization','Bearer ' + value );  //NEED TO CHANGE
-        addToCartRequest.send(JSON.stringify({user_id:"b15dd08c-0",product_id:id,quantity:1})); //NEED TO CHANGE
+        addToCartRequest.send(JSON.stringify({user_id:userID,product_id:id,quantity:1})); //NEED TO CHANGE
 {
     addToCartRequest.onreadystatechange = function()
     {

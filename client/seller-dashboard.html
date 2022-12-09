@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Login </title>
+    <link rel="stylesheet" href="css/sellerdb.css">
+    <!-- favicon -->
+
+    <!-- header links -->
+    <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <!-- <script defer src="./login.js"></script> -->
+
+
+</head>
+<body>
+        <!-- HEADER -->
+    <div id="1"></div>
+    <script>
+        load("header.html");
+        function load(url)
+        {
+            req = new XMLHttpRequest();
+            req.open("GET", url, false);
+            req.send(null);
+            document.getElementById(1).innerHTML = req.responseText;
+        }
+    </script>
+<section id="content">
+
+    <div class="content" style="margin: 100px;">
+        <div class="content-header">
+            <h1>Welcome to your dashboard</h1>
+            <p>Thank you for your services.</p>
+        </div>
+        <div class="widget-box sample-widget" >
+            <div class="widget-header">
+                <h2>Total Orders</h2>
+                <i class="fa fa-cog"></i>
+            </div>
+            <div class="widget-content">
+                <div><p>20</p></div>
+            </div>
+        </div>
+        <div class="widget-box sample-widget">
+            <div class="widget-header">
+                <h2>Pending Orders</h2>
+                <i class="fa fa-cog"></i>
+            </div>
+            <div class="widget-content">
+                <div><p>5</p></div>
+            </div>
+        </div>
+        <div class="widget-box sample-widget" style="">
+            <div class="widget-header">
+                <h2>Completed Orders</h2>
+                <i class="fa fa-cog"></i>
+            </div>
+            <div class="widget-content">
+                <div style="height: 100%;"><p>15</p></div>
+            </div>
+        </div>
+        <div class="widget-box sample-widget" >
+            <div class="widget-header">
+                <h2>Orders Table</h2>
+                <i class="fa fa-cog"></i>
+            </div>
+            <div class="widget-content">
+                <table>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Shipping Address</th>
+                      <th>PID</th>
+                    </tr>
+                    <tr>
+                      <td>Alfreds Futterkiste</td>
+                      <td>Maria Anders</td>
+                      <td>Germany</td>
+                    </tr>
+                    <tr>
+                      <td>Centro comercial Moctezuma</td>
+                      <td>Francisco Chang</td>
+                      <td>Mexico</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+  
+  
+
+<script>$('.button-collapse').sideNav();
+
+    $('.collapsible').collapsible();
+    
+    $('select').material_select();</script>
+          
+</body>
+    <!-- FOOTER -->
+    
+
+
+</html>

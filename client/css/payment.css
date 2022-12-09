@@ -1,252 +1,127 @@
+body {
+  /******************************************************************
+  This contains the font, Internet Explorer fall back options and 
+  the background color for all of the sites
+  ******************************************************************/
+  background: #c3e6f3 no-repeat center center fixed;
+  margin: 0 auto;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", "sans-serif";
+  /* IE Fallback */
+  background: #c3e6f4;
+  width: 100%;
+  height: 100%;
+}
+/******************************************************************
+Below is the code for the red and blue button class which will be 
+for all of the buttons in the program including the submit, next,
+cancel, etc. 
+******************************************************************/
 
+.blueButton {
+  -moz-box-shadow: inset 0px -3px 7px 0px #29bbff;
+  -webkit-box-shadow: inset 0px -3px 7px 0px #29bbff;
+  box-shadow: inset 0px -3px 7px 0px #29bbff;
+  background-color: #0088bb;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #0088bb;
+  display: inline-block;
+  cursor: pointer;
+  color: #fff;
+  font-family: Arial;
+  font-size: 15px;
+  padding: 9px 23px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #263666;
+}
 
-*,*:after,*:before{
-    box-sizing: border-box;
-  }
-  
-  body {
-      background-color: #F3F6FF;
-  }
-  
-  /* Container start */
-  
-  .container2 {
-      margin:2% auto;
-      width: 80%;
-      min-width: 80%;
-      min-height: 610px;
-      background-color: #F7F7F7;
-      border-radius: 10px;
-      box-shadow: 0px 0px 19px 6px #ddd;
-      overflow: hidden;
-  }
-  
-  /* Container Ends */
-  
-  /* info Start Here */
-  .info {
-      background: transparent;
-      z-index: 999;
-      position: absolute;
-      top: 38px;
-      left: 205px;
-      float: left;
-  }
-  
-  .info i {
-      color:rgba(255,255,255,0.7);
-      margin-right: 10px;
-      font-weight: 900;
-      font-size:30px;
-      transition:all .4s ease;
-      cursor: pointer;
-      margin-top: 15px;
-  }
-  .info i:hover{
-      color:rgba(255,255,255,1);
-  }
-  
-  .info .imag img {
-      width: 340px;
-      transform: rotate(12deg);
-      margin-left: 10%;
-      padding-bottom: 80px;
-  }
-  .info .imag{position: relative;}
-  .info .imag a:after { 
-         content: '';
-      display: block;
-      position: absolute;
-      left: 16%;
-      top: 310px;
-      width: 54%;
-      max-width: 250px;
-      height: 10px;
-      background: transparent;
-      border-radius: 100px/50px;
-      box-shadow: 0 50px 40px rgba(0,0,0,.7);
-      }
-  
-  .price span {
-      font-family: roboto;
-      font-size: 30px;
-      display: block;
-      padding: 0px 15px;
-      color: #000;
-      font-weight: 900;
-      color:#fff;
-      text-shadow: 0 2px 7px rgba(0, 0, 0, .4);
-  }
-  .price span:last-of-type {
-      font-size:20px;
-      font-weight: 600;
-  }
-  /* Info Ends here */
-  
-  /* Opacity */ 
-  .colored {
-      background-color: #000000;
-      width: 600px;
-      height: 610px;
-      transform: skew(31deg);
-      position: relative;
-      top: 0;
-      left: -200px;
-      float: left;
-  }
-  
-  /* opacity ends */
-  
-  
-  /* -----------------------------------------------------------------*/
-  
-  /* form Start here */
-  .form h3 {
-  font-size: 20px;
-      font-family: roboto;
-      /* font-weight: 700; */
-      letter-spacing: 1.3px;
-      word-spacing: 3px;
-      margin-top: 40px;
-   }
-  label {
-      display: block;
-      color: #989898;
-      font-weight: 700;
-      font-family: roboto;
-      font-size: 14px;
-      letter-spacing: 1px;
-      word-spacing: 3px;
-      margin-top: 30px;
-  }
-  select {
-      border: 0;
-      background-color: #f7f7f7;
-      border-bottom: 2px solid #ddd;
-      outline: none;
-      padding: 15px 30px;
-      width: 230px;
-      font-size: 14px;
-      padding-bottom: 7px;
-      font-weight: 600;
-      margin-top: 5px;
-  }
-  
-  .select {
-      position: relative;
-  }
-  .select:after {
-      content: '\f078';
-      position: absolute;
-      right: 1em;
-      top: 50%;
-      -webkit-transform: translateY(-50%);
-      transform: translateY(-50%);
-      font-family: 'FontAwesome';
-      z-index: 10;
-      color:#ddd;
-  }
-  
-  input {
-      border: 0;
-      background-color: #f7f7f7;
-      border-bottom: 2px solid #ddd;
-      outline: none;
-      padding: 5px 30px;
-      width: 230px;
-      font-size: 14px;
-      padding-bottom: 7px;
-      font-weight: 600;
-      transition: all .5s ease-in;
-  }
-  input:focus {
-      border-bottom:2px solid #82C5D8;
-  }
-  .small {
-      width:150px;
-      padding: 15px 10px;
-  }
-  .expiry {
-      float:left;
-      width:30%;
-  }
-  .sec input{
-      width: 50px;
-      padding: 11px 6px;
-      margin-top: 13px;
-  }
-  
-  button {
-      background-color:#de3d3d;
-      outline: none;
-      border: 0;
-      color: #fff;
-      font-size: 16px;
-      font-family: roboto;
-      font-weight: 600;
-      letter-spacing: 1px;
-      word-spacing: 3px;
-      padding: 10px;
-      width: 34%;
-      display: block;
-      margin: auto;
-      border-radius: 15px;
-      cursor: pointer;
-  }
-  button:hover{
-    background-color:  #26B961;
-    outline: none;
-    border: 0;
-    color: #fff;
-    font-size: 16px;
-    font-family: roboto;
-    font-weight: 600;
-    letter-spacing: 1px;
-    word-spacing: 3px;
-    padding: 10px;
-    width: 34%;
-    display: block;
-    margin: auto;
-    border-radius: 15px;
-    cursor: pointer;
-  }
-  .form p {
-      color:#989898;
-      font-family: roboto;
-      font-size:14px;
-      font-weight:normal;
-      text-align: center;
-      margin-top: 80px;
-      margin-bottom: 4px;
-  }
-  /* Form Ends Here */
-  
-  /* Media Query For Mobile */ 
-  @media only screen and (max-width: 960px) {
-      .colored , .expiry {
-         float:none;
-      }
-  
-      .form {
-          text-align: center;
-      }
-      .info {
-          left:33%;
-      }
-      .info .imag img {
-          margin-left:-15%;
-      }
-      .price span {
-          padding:0px;
-      }
-      .form p {
-          margin-top: 30px;
-      }
-      button {
-          margin-bottom: 30px;
-          width:60%;
-      }
-  }
-  
-  
-  /* Ends Of media Query */
+.blueButton:hover {
+  background-color: #369cb8;
+}
+
+.blueButton:active {
+  position: relative;
+  top: 1px;
+}
+
+/******************************************************************
+Below is the code for the confirm order page, it displays the material ID and cost of the order
+******************************************************************/
+
+.payment input[type="text"] {
+  width: 95%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: none;
+  text-align: left;
+}
+
+.payment input[type="text"]:focus {
+  border: 1px solid #a8a8a8;
+}
+
+.payment input[type="submit"],
+.payment input[type="button"] {
+  float: right;
+  margin: -20px 20px 10px 0px;
+}
+
+.payment {
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  padding: 40px;
+  width: 40%;
+  margin: 0 auto;
+  margin-top: 20px;
+  box-shadow: 1px 1px 5px #888888;
+}
+
+/******************************************************************
+Below is the form for the confirm order table 
+******************************************************************/
+
+/* CSS for Credit Card Payment form */
+.credit-card-box .panel-title {
+  display: inline;
+  font-weight: bold;
+}
+.credit-card-box .form-control.error {
+  border-color: red;
+  outline: 0;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+}
+.credit-card-box label.error {
+  font-weight: bold;
+  color: red;
+  padding: 2px 8px;
+  margin-top: 2px;
+}
+.credit-card-box .payment-errors {
+  font-weight: bold;
+  color: red;
+  padding: 2px 8px;
+  margin-top: 2px;
+}
+.credit-card-box label {
+  display: block;
+}
+/* The old "center div vertically" hack */
+.credit-card-box .display-table {
+  display: table;
+}
+.credit-card-box .display-tr {
+  display: table-row;
+}
+.credit-card-box .display-td {
+  display: table-cell;
+  vertical-align: middle;
+  width: 50%;
+}
+.credit-card-box .panel-heading img {
+  min-width: 180px;
+}
