@@ -164,8 +164,8 @@ router.put('/updatequantity', verifyJWT, verifyRoles("ua"), async (req, res, nex
                     });
                 }
                 return res.status(200).send({
-                    message: "quantity updated in cart with " + result.affectedRows + " row(s) affected"
-
+                    message: "quantity updated in cart"
+                    
                 });
             });
         });
@@ -303,19 +303,19 @@ router.post('/checkout/:user_id', verifyJWT, verifyRoles("ua"), async (req, res,
 
                 var discount = 0;
                 //validate coupon and apply discount
-                if (req.body.Coupon_Id) {
-                    dbConn.query('SELECT * FROM Coupon WHERE Coupon_ID = ?', req.body.Coupon_Id, (err, output) => {
-                        if (output) {
-                            if (output[0].Redeemed == "NO") {
-                                discount = (sub_total * Number(output[0].discount_percent)) / 100;
+                if(req.body.coupon_id){
+                    dbConn.query('SELECT * FROM Coupon WHERE Coupon_ID = ?', req.body.coupon_id, (err, output) => {
+                        if(output) {
+                            if(output[0].Redeemed == "NO") {
+                                discount = (sub_total * Number(output[0].discount_percent))/100;
                                 total = total - discount;
                                 return res.json({ "sub total": sub_total, "delivery fee": delivery_fee, "tax": tax, "discount": discount, "total": total, "products": result });
                             }
                         }
                     });
                 }
-                else {
-                    res.json({ "sub total": sub_total, "delivery fee": delivery_fee, "tax": tax, "discount": discount, "total": total, "products": result });
+                else{
+                    res.json({"sub_total":sub_total, "delivery_fee":delivery_fee, "tax": tax,  "discount": discount, "total": total, "products": result});
                 }
             });
         });
