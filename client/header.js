@@ -27,3 +27,15 @@ function toggleLoginEnabled() {
     }
     
 }
+
+// check user login status
+function checkLoginStatus() {
+    console.log("checkLoginStatus");
+    if (localStorage.getItem("token") == null) {
+        console.log("token is null");
+        return false;
+    } else {
+        console.log("token is not null");
+        return true;
+    }
+}
