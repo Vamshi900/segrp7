@@ -100,6 +100,41 @@ function dynamicContentDetails(ob)
         document.cookie = "orderId=" + order + ",counter=" + counter
         document.getElementById("badge").innerHTML = counter
         console.log("Cookie",document.cookie)
+//{
+//     "message": "Login successful",
+//     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWRiMnNzc3Nhc3Nzc3NzczBAZ21haWwuY29tIiwicm9sZSI6IjIiLCJpYXQiOjE2NzA1Njc3MDAsImV4cCI6MTY3MDYwMzcwMH0.FrLIcOrP_V0mECFqUWhZ5_ckEh-ugHRKiHJfCS6T7kY",
+//     "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWRiMnNzc3Nhc3Nzc3NzczBAZ21haWwuY29tIiwicm9sZSI6IjIiLCJpYXQiOjE2NzA1Njc3MDAsImV4cCI6MTY3MDY1NDEwMH0.O3FWEAUJaC8ie6PdfR1Mx7EQ1Q50ImgOSH6yXPF_Ycw",
+//     "user_id": "b15dd08c-0",
+//     "role": "2"
+// }
+
+        var value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWRiMnNzc3Nhc3Nzc3NzczBAZ21haWwuY29tIiwicm9sZSI6IjIiLCJpYXQiOjE2NzA1Njc3MDAsImV4cCI6MTY3MDYwMzcwMH0.FrLIcOrP_V0mECFqUWhZ5_ckEh-ugHRKiHJfCS6T7kY"
+        let addToCartRequest = new XMLHttpRequest()
+
+        
+        addToCartRequest.open('POST', 'http://localhost:5001/api/v1/cart/addtocart', true)
+        addToCartRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        addToCartRequest.setRequestHeader('Authorization','Bearer ' + value );
+        addToCartRequest.send(JSON.stringify({user_id:"b15dd08c-0",product_id:id,quantity:1}));
+{
+    addToCartRequest.onreadystatechange = function()
+    {
+        if(this.readyState === 4 && this.status == 200)
+        {
+            console.log('ADDED TO CART!!');
+            let response = JSON.parse(this.responseText)
+            {
+                console.log(response);
+            }
+        }
+        else
+        {
+            console.log('not connected!');
+        }
+    }
+}
+
+
     }
     buttonTag.appendChild(buttonText)
 
