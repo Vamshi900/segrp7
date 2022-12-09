@@ -101,7 +101,7 @@ function couponcheck(){
     document.getElementById("coupon-check").innerHTML=`
     <div class="col-12 col">
                   
-                  <div class="info-bar" style="padding-top: 10px;">
+                  <div id="info-bar" class="info-bar" style="padding-top: 10px;">
                       <p><i class="fa fa-info"></i> 
                           Have a coupon? <a onclick="couponform()" href="#">Click here to enter your code</a>
                       </p>
@@ -116,6 +116,7 @@ function couponform(){
     <div class="col-6 col coupon" style="padding-right:100px">
                   <form method="get">
                       <input type="text" name="coupon" id="coupon" placeholder="Coupon code">
+                      <div id="couponValidation"></div>
                       <div class="float-end mt-2 pt-1">
                         <button onClick="submitHandler()" type="button" class="btn-sm">Apply Coupon</button>
                     <button type="button" onclick="cancelhandler()" class="btn-outline btn-sm">Cancel</button>
@@ -129,6 +130,13 @@ function cancelhandler(){
     document.getElementById("couponform").innerHTML=``
 }
 function submitHandler(){
+    var couponcode=document.getElementById("coupon").value
+    if(couponcode!="christmas50"){
+        document.getElementById("couponValidation").innerHTML=`
+        <p>Coupon doesn't exist</p>`
+        return;
+    }
+    document.getElementById("info-bar").innerHTML=``
     cancelhandler()
     document.getElementById("discount").innerHTML=`
     <td>Discount</td>
@@ -136,6 +144,7 @@ function submitHandler(){
                   `
                   document.getElementById("tax").innerHTML=`$${(subTotal-discount)*0.10}`
                   document.getElementById("total").innerHTML=`$${(subTotal-discount)-((subTotal-discount)*0.1)}`
+
 }
 
 // BACKEND CALL
