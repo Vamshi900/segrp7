@@ -1,7 +1,6 @@
 console.clear()
 
 let id = location.search.split('?')[1]
-console.log(id)
 
 let reviewsObject=[]
 if(document.cookie.indexOf(',counter=')>=0)
@@ -64,7 +63,14 @@ function dynamicContentDetails(ob)
     h3ProductPreviewDiv.appendChild(h3ProductPreviewText)
     productPreviewDiv.appendChild(h3ProductPreviewDiv)
     // repeated product image 5 times
-    let imgArr = [ob.Product_Image,ob.Product_Image,ob.Product_Image,ob.Product_Image,ob.Product_Image]
+    let imgArr = ob.Product_Image.split(',')
+    if (imgArr.length == 0)
+    {
+        imgArr = [ob.Product_Image]
+    }
+    
+
+
     let i;
     for(i=0; i<imgArr.length; i++)
     {
