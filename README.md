@@ -35,20 +35,3 @@ npm run start
 ``` https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en ```
 
 1. serve  client  folder in the code using the extension
-
-
-## API Routes:
-
-### API overview: `/api/v1`
-
-### Orders: 
-   1. `/api/v1/orders`
-   * GET (READ all)
-   2. `/api/v1/orders/:Order_ID`
-   * GET (READ one)
-   3. `/api/v1/orders/?search=`
-   * GET (READ -> search DB)
-   4. `/api/v1/orders/create`
-   * POST (Create one)
-   5. `/api/v1/orders/edit/:Order_ID`
-   * PUT (Edit one)
