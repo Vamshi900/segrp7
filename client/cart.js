@@ -37,7 +37,7 @@ return;}
     }
     document.getElementById("subTotal").innerHTML=`$${subTotal}`
     document.getElementById("tax").innerHTML=`$${subTotal*0.1}`
-    document.getElementById("total").innerHTML=`$${subTotal-subTotal*0.1}`
+    document.getElementById("total").innerHTML=`$${subTotal+subTotal*0.1}`
     cart.innerHTML=cartRowHTML
 
 }
@@ -91,7 +91,7 @@ function calculateSubTotal(priceArray){
     subTotal=sum
     document.getElementById("subTotal").innerHTML=`$${sum}`
     document.getElementById("tax").innerHTML=`$${sum*0.10}`
-    document.getElementById("total").innerHTML=`$${sum-(sum*0.1)}`
+    document.getElementById("total").innerHTML=`$${sum+(sum*0.1)}`
 
 }
 
@@ -136,14 +136,14 @@ function submitHandler(){
         <p>Coupon doesn't exist</p>`
         return;
     }
-    document.getElementById("info-bar").innerHTML=``
+    document.getElementById("info-bar").innerHTML=`<p>Wohoo! Coupon Applied</p>`
     cancelhandler()
     document.getElementById("discount").innerHTML=`
     <td>Discount</td>
                   <td>-$${discount}</td>
                   `
                   document.getElementById("tax").innerHTML=`$${(subTotal-discount)*0.10}`
-                  document.getElementById("total").innerHTML=`$${(subTotal-discount)-((subTotal-discount)*0.1)}`
+                  document.getElementById("total").innerHTML=`$${(subTotal-discount)+((subTotal-discount)*0.1)}`
 
 }
 

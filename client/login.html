@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> Login </title>
-    <link rel="stylesheet" href="css/login.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Login</title>
+    <link rel="stylesheet" href="css/login.css" />
     <!-- favicon -->
 
     <!-- header links -->
     <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato&display=swap"
+      rel="stylesheet"
+    />
     <script defer src="./login.js"></script>
-
-
-</head>
-<body>
-        <!-- HEADER -->
+  </head>
+  <body>
+    <!-- HEADER -->
     <div id="1"></div>
     <script>
-        load("header.html");
-        function load(url)
-        {
-            req = new XMLHttpRequest();
-            req.open("GET", url, false);
-            req.send(null);
-            document.getElementById(1).innerHTML = req.responseText;
-        }
+      load("header.html");
+      function load(url) {
+        req = new XMLHttpRequest();
+        req.open("GET", url, false);
+        req.send(null);
+        document.getElementById(1).innerHTML = req.responseText;
+      }
     </script>
 
-          <div class="login-page">
-            <div class="form">
-              <form class="register-form">
-                <input type="text" placeholder="name"/>
-                <input type="password" placeholder="password"/>
-                <input type="text" placeholder="email address"/>
-                <button>create</button>
-                <p class="message">Already registered? <a href="#">Sign In</a></p>
-              </form>
-              <!-- <form class="login-form">
+    <div class="login-page">
+      <div class="form">
+        <form class="register-form">
+          <input type="text" placeholder="name" />
+          <input type="password" placeholder="password" />
+          <input type="text" placeholder="email address" />
+          <button>create</button>
+          <p class="message">Already registered? <a href="#">Sign In</a></p>
+        </form>
+        <!-- <form class="login-form">
                 <input type="text" placeholder="Email"/>
                 <input type="password" placeholder="Password"/>
                 <hr>
@@ -46,22 +46,43 @@
 
                 <p class="message">Not registered? <a href="signup.html">Create an account</a></p>
               </form> -->
-              <div id="login-error-msg-holder">
-                <p id="login-error-msg">Login <span id="error-msg-second-line"></span></p>
-              </div>
+        <div id="login-error-msg-holder">
+          <p id="login-error-msg">
+            Login <span id="error-msg-second-line"></span>
+          </p>
+        </div>
 
-              <form id="login-form">
-                <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username">
-                <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
-                <input style="background:green;color:white" type="submit" value="Login" id="login-form-submit">
-                <p class="message">Not registered? <a href="signup.html">Create an account</a></p>
-              </form>
-            </div>
-          </div>
-          
-</body>
-    <!-- FOOTER -->
-    
-
-
+        <form id="login-form">
+          <input
+            type="text"
+            name="username"
+            id="username-field"
+            class="login-form-field"
+            placeholder="Username"
+          />
+          <input
+            type="password"
+            name="password"
+            id="password-field"
+            class="login-form-field"
+            placeholder="Password"
+          />
+          <input
+            style="background: green; color: white"
+            type="submit"
+            value="Login"
+            id="login-form-submit"
+          />
+          <p class="message">
+            Not registered? <a href="signup.html">Create an account</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script src="./header.js"></script>
+  <script>
+    toggleLoginEnabled();
+  </script>
+  <!-- FOOTER -->
 </html>

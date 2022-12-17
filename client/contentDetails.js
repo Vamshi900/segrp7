@@ -26,6 +26,7 @@ userID=localStorage.getItem("user_id")
 value=localStorage.getItem("token")
 }
 else{
+    document.getElementById("reviewButton").innerHTML=``
     userID=null
     value=null
 }
