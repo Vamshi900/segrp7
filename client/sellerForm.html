@@ -1,92 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> SELLER UPLOAD | E-COMMERCE WEBSITE BY SPARKSTORE </title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>SELLER UPLOAD | E-COMMERCE WEBSITE BY SPARKSTORE</title>
     <!-- favicon -->
 
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel="stylesheet" href="css/addProd.css">
-</head>
-<body>  
+    <link rel="stylesheet" href="css/addProd.css" />
+  </head>
+  <body>
     <!-- HEADER -->
     <div id="1"></div>
     <script>
-        load("header.html");
-        function load(url)
-        {
-            req = new XMLHttpRequest();
-            req.open("GET", url, false);
-            req.send(null);
-            document.getElementById(1).innerHTML = req.responseText;
-        }
+      load("header.html");
+      function load(url) {
+        req = new XMLHttpRequest();
+        req.open("GET", url, false);
+        req.send(null);
+        document.getElementById(1).innerHTML = req.responseText;
+      }
     </script>
 
     <!-- SELLER -->
-    <div class="container" style="padding-top: 100px;">  
-      <form id="contact" action="" method="post">
+    <div class="container" style="padding-top: 100px">
+      <form id="contact" action="index.html">
         <h3>Add Product</h3>
-        <hr>
+        <hr />
         <fieldset>
-          <input placeholder="Product ID" type="text" tabindex="1" required autofocus>
+          <input
+            placeholder="Product ID"
+            type="text"
+            tabindex="1"
+            required
+            autofocus
+          />
         </fieldset>
         <fieldset>
-          <input placeholder="Product name" type="text" tabindex="1" required autofocus>
+          <input
+            placeholder="Product name"
+            type="text"
+            tabindex="1"
+            required
+            autofocus
+          />
         </fieldset>
         <fieldset>
-          <input placeholder="Brand" type="text" tabindex="2" required>
+          <input placeholder="Brand" type="text" tabindex="2" required />
         </fieldset>
         <fieldset>
-          <input placeholder="Availability" type="text" tabindex="2" required>
+          <input placeholder="Availability" type="text" tabindex="2" required />
         </fieldset>
         <fieldset>
-          <input placeholder="Quantity" type="number" tabindex="2" required>
+          <input placeholder="Quantity" type="number" tabindex="2" required />
         </fieldset>
         <fieldset>
-          <input placeholder="Category" type="text" tabindex="2" required>
+          <input placeholder="Category" type="text" tabindex="2" required />
         </fieldset>
         <fieldset>
-          <input placeholder="SubCategory" type="text" tabindex="2" required>
+          <input placeholder="SubCategory" type="text" tabindex="2" required />
         </fieldset>
         <fieldset>
-          <input placeholder="Price" type="text" tabindex="2" required>
+          <input placeholder="Price" type="text" tabindex="2" required />
         </fieldset>
         <fieldset>
-          <input placeholder="User ID" val="1000" type="text" tabindex="2" hidden>
+          <input
+            placeholder="User ID"
+            val="1000"
+            type="text"
+            tabindex="2"
+            hidden
+          />
         </fieldset>
         <fieldset>
-          <input placeholder="Product Image" type="url" tabindex="4" required>
+          <input placeholder="Product Image" type="url" tabindex="4" required />
         </fieldset>
         <fieldset>
-          <input placeholder="Tags" type="text" tabindex="2" required>
+          <input placeholder="Tags" type="text" tabindex="2" required />
         </fieldset>
         <fieldset>
-          <input placeholder="Description" type="text" tabindex="3" required>
+          <input placeholder="Description" type="text" tabindex="3" required />
         </fieldset>
         <fieldset>
-          <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+          <button
+            name="submit"
+            type="submit"
+            id="contact-submit"
+            data-submit="...Sending"
+          >
+            Submit
+          </button>
         </fieldset>
       </form>
-     
-      <br><br><br>
+
+      <br /><br /><br />
     </div>
-        <!-- FOOTER -->
-        <div id="4"></div>
-        <script>
-            load("footer.html");
-            function load(url)
-            {
-                req = new XMLHttpRequest();
-                req.open("GET", url, false);
-                req.send(null);
-                document.getElementById(4).innerHTML = req.responseText;
-            }
-        </script>
-</body>
-<!-- <script src="/orderPlaced.js"></script> -->
+    <!-- FOOTER -->
+    <div id="4"></div>
+    <script>
+      load("footer.html");
+      function load(url) {
+        req = new XMLHttpRequest();
+        req.open("GET", url, false);
+        req.send(null);
+        document.getElementById(4).innerHTML = req.responseText;
+      }
+    </script>
+  </body>
+  <!-- <script src="/orderPlaced.js"></script> -->
 </html>

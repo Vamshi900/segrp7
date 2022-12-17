@@ -1,8 +1,28 @@
 console.clear();
-var userID="b15dd08c-0"
+
+function checkLoginStatus() {
+    console.log("checkLoginStatus");
+    if (localStorage.getItem("token") == null) {
+        console.log("token is null");
+        return false;
+    } else {
+        console.log("token is not null");
+        return true;
+    }
+}
+var userID=null
+if(checkLoginStatus()){
+userID=localStorage.getItem("user_id")
+}
+
+
 
 var subTotal=0
 function dynamicCartSection(cartItems){
+    if(cartItems.length==0){
+    document.getElementById("cartpage").innerHTML=`<p>Your Cart is Empty</p>`
+return;}
+
     var cart=document.getElementById("cartTable")
     var cartRowHTML=` <tr>
     <th>Product</th>
@@ -17,7 +37,7 @@ function dynamicCartSection(cartItems){
     }
     document.getElementById("subTotal").innerHTML=`$${subTotal}`
     document.getElementById("tax").innerHTML=`$${subTotal*0.1}`
-    document.getElementById("total").innerHTML=`$${subTotal-subTotal*0.1}`
+    document.getElementById("total").innerHTML=`$${subTotal+subTotal*0.1}`
     cart.innerHTML=cartRowHTML
 
 }
@@ -29,7 +49,7 @@ function displayItem(product){
     var productid=product.Product_ID
     var quantity=product.Quantity
 
-    var cart= `<tr>
+    var cart= `<tr id=${productid}>
     <td>
       <div class="cart-info">
         <img src=${image} alt="" />
@@ -37,7 +57,7 @@ function displayItem(product){
           <p>${name}</p>
           <small>Price  ${price}</small>
           <br />
-          <a href="#">Remove</a>
+          <a onclick="removeitem(${productid})" href="#">Remove</a>
         </div>
       </div>
     </td>
@@ -47,10 +67,20 @@ function displayItem(product){
    `
    return cart;
 }
+
+function removeitem(productid){
+    document.getElementById(`${productid}`).innerHTML=``
+    calculateSubTotal(document.getElementsByClassName("prices"))
+    if(subTotal==0){
+        document.getElementById("cartpage").innerHTML=`<p>Your Cart is Empty</p>`
+    }
+
+}
 function updatePrice(value,price,productid){
     var cost = parseInt(value.value)*parseInt(price);
     document.getElementById(`${productid}-price`).innerHTML=`${cost}`
     calculateSubTotal(document.getElementsByClassName("prices"))
+    
 }
 
 function calculateSubTotal(priceArray){
@@ -58,9 +88,10 @@ function calculateSubTotal(priceArray){
     for(p=0;p<priceArray.length;p++){
     sum=sum+parseInt(priceArray[p].innerHTML)
     }
+    subTotal=sum
     document.getElementById("subTotal").innerHTML=`$${sum}`
     document.getElementById("tax").innerHTML=`$${sum*0.10}`
-    document.getElementById("total").innerHTML=`$${sum-(sum*0.1)}`
+    document.getElementById("total").innerHTML=`$${sum+(sum*0.1)}`
 
 }
 
@@ -70,7 +101,7 @@ function couponcheck(){
     document.getElementById("coupon-check").innerHTML=`
     <div class="col-12 col">
                   
-                  <div class="info-bar" style="padding-top: 10px;">
+                  <div id="info-bar" class="info-bar" style="padding-top: 10px;">
                       <p><i class="fa fa-info"></i> 
                           Have a coupon? <a onclick="couponform()" href="#">Click here to enter your code</a>
                       </p>
@@ -78,16 +109,17 @@ function couponcheck(){
               </div>
     `
 }
-couponcheck()
+
 
 function couponform(){
     document.getElementById("couponform").innerHTML=`
-    <div class="col-6 col coupon">
+    <div class="col-6 col coupon" style="padding-right:100px">
                   <form method="get">
                       <input type="text" name="coupon" id="coupon" placeholder="Coupon code">
+                      <div id="couponValidation"></div>
                       <div class="float-end mt-2 pt-1">
-                        <button onClick="submitHandler()" class="btn btn-success btn-sm">Apply Coupon</button>
-                    <button type="button" onclick="cancelhandler()" class="btn btn-outline-success btn-sm">Cancel</button>
+                        <button onClick="submitHandler()" type="button" class="btn-sm">Apply Coupon</button>
+                    <button type="button" onclick="cancelhandler()" class="btn-outline btn-sm">Cancel</button>
            </div>
                   </form>
               </div>
@@ -98,19 +130,29 @@ function cancelhandler(){
     document.getElementById("couponform").innerHTML=``
 }
 function submitHandler(){
+    var couponcode=document.getElementById("coupon").value
+    if(couponcode!="christmas50"){
+        document.getElementById("couponValidation").innerHTML=`
+        <p>Coupon doesn't exist</p>`
+        return;
+    }
+    document.getElementById("info-bar").innerHTML=`<p>Wohoo! Coupon Applied</p>`
     cancelhandler()
     document.getElementById("discount").innerHTML=`
     <td>Discount</td>
-                  <td>-${discount}</td>
+                  <td>-$${discount}</td>
                   `
-                  document.getElementById("tax").innerHTML=`$${(sum-discount)*0.10}`
-                  document.getElementById("total").innerHTML=`$${(sum-discount)-((sum-discount)*0.1)}`
+                  document.getElementById("tax").innerHTML=`$${(subTotal-discount)*0.10}`
+                  document.getElementById("total").innerHTML=`$${(subTotal-discount)+((subTotal-discount)*0.1)}`
+
 }
 
 // BACKEND CALL
+if(userID!=null){
 let cartProducts=[]
+
+couponcheck()
 let httpRequest = new XMLHttpRequest()
-let totalAmount = 0
 httpRequest.onreadystatechange = function()
 {
     if(this.readyState == 4)
@@ -121,7 +163,10 @@ httpRequest.onreadystatechange = function()
             contentTitle = JSON.parse(this.responseText)
             items=contentTitle.data
             cartProducts=items
+            console.log(items)
+            
             dynamicCartSection(items)
+            
         }
     }
         else
@@ -133,6 +178,6 @@ httpRequest.onreadystatechange = function()
 httpRequest.open('GET', `http://localhost:5001/api/v1/cart/${userID}`, true)
 httpRequest.send()
 
-
+}
 
 

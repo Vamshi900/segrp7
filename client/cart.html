@@ -1,43 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> Cart </title>
-    <link rel="stylesheet" href="css/cart.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Cart</title>
+    <link rel="stylesheet" href="css/cart.css" />
     <!-- favicon -->
 
     <!-- header links -->
     <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-
-</head>
-<body>
-        <!-- HEADER -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- HEADER -->
     <div id="1"></div>
     <script>
-        load("header.html");
-        function load(url)
-        {
-            req = new XMLHttpRequest();
-            req.open("GET", url, false);
-            req.send(null);
-            document.getElementById(1).innerHTML = req.responseText;
-        }
+      load("header.html");
+      function load(url) {
+        req = new XMLHttpRequest();
+        req.open("GET", url, false);
+        req.send(null);
+        document.getElementById(1).innerHTML = req.responseText;
+      }
     </script>
 
-        <!-- CART CONTAINER -->
-        <div class="container" style="padding-top: 100px;">
+    <!-- CART CONTAINER -->
+    <div class="container" style="padding-top: 100px"></div>
 
-          </div>
-          
-          <!-- cart items details -->
-          
-          <div class="small-container cart-page">
-            <table id="cartTable">
-            
-              <!-- <tr>
+    <!-- cart items details -->
+    <div id="cartpage">
+      <div class="small-container cart-page">
+        <table id="cartTable">
+          <!-- <tr>
                 <td>
                   <div class="cart-info">
                     <img src="https://i.ibb.co/B3vYjvw/buy-1.jpg" alt="" />
@@ -67,7 +65,7 @@
                 <td><input type="number" value="1" /></td>
                 <td>$150.00</td>
               </tr> -->
-              <!-- <tr>
+          <!-- <tr>
                 <td>
                   <div class="cart-info">
                     <img src="https://i.ibb.co/NyYtY31/buy-3.jpg" alt="" />
@@ -82,53 +80,48 @@
                 <td><input type="number" value="1" /></td>
                 <td>$1500.00</td>
               </tr> -->
-            </table>
+        </table>
 
-            <div class="row" id="coupon-check"></div>
-              
-          <div id="couponform" class="row" style="padding-left: 100px;">
-              
-          </div>
-          
-          
-            <div class="total-price">
-              <table>
-                <tr>
-                  <td>Subtotal</td>
-                  <td id="subTotal"></td>
-                </tr>
-                <tr id="discount"> 
-                  
-                </tr>
-                <tr>
-                  <td>Tax</td>
-                  <td id="tax"></td>
-                </tr>
-                <tr>
-                  <td>Total</td>
-                  <td id ="total"></td>
-                </tr>
-              </table>
-              <br>
-              
-            </div>
-            <button type="submit" id="bt">Checkout</button>
-          </div>
-          
-         
-          
-          <script>
-            var MenuItems = document.getElementById('MenuItems');
-            MenuItems.style.maxHeight = '0px';
-          
-            function menutoggle() {
-              if (MenuItems.style.maxHeight == '0px') {
-                MenuItems.style.maxHeight = '200px';
-              } else {
-                MenuItems.style.maxHeight = '0px';
-              }
-            }
-          </script>
+        <div class="row" id="coupon-check"></div>
+
+        <div id="couponform" class="row" style="padding-left: 100px"></div>
+
+        <div class="total-price">
+          <table>
+            <tr>
+              <td>Subtotal</td>
+              <td id="subTotal"></td>
+            </tr>
+            <tr id="discount"></tr>
+            <tr>
+              <td>Tax</td>
+              <td id="tax"></td>
+            </tr>
+            <tr>
+              <td>Total</td>
+              <td id="total"></td>
+            </tr>
+          </table>
+          <br />
+        </div>
+        <a href="billing.html">
+          <button type="submit" id="bt">Checkout</button></a
+        >
+      </div>
+    </div>
+
+    <script>
+      var MenuItems = document.getElementById("MenuItems");
+      MenuItems.style.maxHeight = "0px";
+
+      function menutoggle() {
+        if (MenuItems.style.maxHeight == "0px") {
+          MenuItems.style.maxHeight = "200px";
+        } else {
+          MenuItems.style.maxHeight = "0px";
+        }
+      }
+    </script>
     <!-- <div id="cartMainContainer">
         <h1> Checkout </h1>
         <h3 id="totalItem"> Total Items: 0 </h3>
@@ -141,18 +134,17 @@
         </div>
 
     </div> -->
-</body>
-    <!-- FOOTER -->
-    <div id="4"></div>
-    <script>
-        load("footer.html");
-        function load(url)
-        {
-            req = new XMLHttpRequest();
-            req.open("GET", url, false);
-            req.send(null);
-            document.getElementById(4).innerHTML = req.responseText;
-        }
-    </script>
-<script src="/cart.js"></script>
+  </body>
+  <!-- FOOTER -->
+  <div id="4"></div>
+  <script>
+    load("footer.html");
+    function load(url) {
+      req = new XMLHttpRequest();
+      req.open("GET", url, false);
+      req.send(null);
+      document.getElementById(4).innerHTML = req.responseText;
+    }
+  </script>
+  <script src="/cart.js"></script>
 </html>

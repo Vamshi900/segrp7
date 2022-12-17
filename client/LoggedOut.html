@@ -1,54 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> SELLER UPLOAD | E-COMMERCE WEBSITE BY SPARKSTORE </title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>SELLER UPLOAD | E-COMMERCE WEBSITE BY SPARKSTORE</title>
     <!-- favicon -->
 
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel="stylesheet" href="css/addProd.css">
-</head>
-<body>  
+    <link rel="stylesheet" href="css/addProd.css" />
+  </head>
+  <body>
     <!-- HEADER -->
     <div id="1"></div>
     <script>
-        load("header.html");
-        function load(url)
-        {
-            req = new XMLHttpRequest();
-            req.open("GET", url, false);
-            req.send(null);
-            document.getElementById(1).innerHTML = req.responseText;
-        }
+      load("header.html");
+      function load(url) {
+        req = new XMLHttpRequest();
+        req.open("GET", url, false);
+        req.send(null);
+        document.getElementById(1).innerHTML = req.responseText;
+      }
     </script>
 
     <!-- SELLER -->
-    <div class="container" style="padding-top: 100px;">  
+    <div class="container" style="padding-top: 100px">
       <form id="contact" action="" method="post">
         <h3>Logged Out</h3>
-        <hr>
-        <h5>You're logged out. You can still access the home page and browse our products.</h5>
+        <hr />
+        <h5>
+          You're logged out. You can still access the home page and browse our
+          products.
+        </h5>
       </form>
-     
-      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <script>
+        localStorage.clear();
+      </script>
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
     </div>
-        <!-- FOOTER -->
-        <div id="4"></div>
-        <script>
-            load("footer.html");
-            function load(url)
-            {
-                req = new XMLHttpRequest();
-                req.open("GET", url, false);
-                req.send(null);
-                document.getElementById(4).innerHTML = req.responseText;
-            }
-        </script>
-</body>
-<script src="/orderPlaced.js"></script>
+    <!-- FOOTER -->
+    <div id="4"></div>
+    <script>
+      load("footer.html");
+      function load(url) {
+        req = new XMLHttpRequest();
+        req.open("GET", url, false);
+        req.send(null);
+        document.getElementById(4).innerHTML = req.responseText;
+      }
+    </script>
+  </body>
+  <script src="./header.js"></script>
+  <script>
+    toggleLoginEnabled();
+  </script>
+  <script src="/orderPlaced.js"></script>
 </html>

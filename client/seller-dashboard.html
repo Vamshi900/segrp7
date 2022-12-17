@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Seller Page </title>
+    <link rel="stylesheet" href="css/sellerdb.css">
+    <!-- favicon -->
+
+    <!-- header links -->
+    <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <!-- <script defer src="./login.js"></script> -->
+
+
+</head>
+<body>
+        <!-- HEADER -->
+    <div id="1"></div>
+    <script>
+        load("header.html");
+        function load(url)
+        {
+            req = new XMLHttpRequest();
+            req.open("GET", url, false);
+            req.send(null);
+            document.getElementById(1).innerHTML = req.responseText;
+        }
+    </script>
+<section id="content">
+
+    <div class="content" style="margin: 100px;">
+        <div class="content-header">
+            <h1>Welcome to your dashboard</h1>
+            <p>Thank you for your services.</p>
+            <a href="sellerForm.html"><button>Add a Product</button></a>
+        </div>
+        
+        <div class="widget-box sample-widget" >
+            <div class="widget-header">
+                <h2>Total Orders</h2>
+                <i class="fa fa-cog"></i>
+            </div>
+            <div class="widget-content">
+                <div><p>20</p></div>
+            </div>
+        </div>
+        <div class="widget-box sample-widget">
+            <div class="widget-header">
+                <h2>Pending Orders</h2>
+                <i class="fa fa-cog"></i>
+            </div>
+            <div class="widget-content">
+                <div><p>5</p></div>
+            </div>
+        </div>
+        <div class="widget-box sample-widget" style="">
+            <div class="widget-header">
+                <h2>Completed Orders</h2>
+                <i class="fa fa-cog"></i>
+            </div>
+            <div class="widget-content">
+                <div style="height: 100%;"><p>15</p></div>
+            </div>
+        </div>
+        <div class="widget-box sample-widget" >
+            <div class="widget-header">
+                <h2>Orders Table</h2>
+                <i class="fa fa-cog"></i>
+            </div>
+            <!-- 
+                Payment_ID
+1161550
+134246
+1678990
+2780096
+4154781
+4538483
+4797190
+4860089
+4985768
+5035704
+5920597
+6606442
+7055884
+7940820
+8081113
+8183600
+8187743
+8345494
+8549772
+8895483
+9203829
+
+             -->
+            <div class="widget-content">
+                <table>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Shipping Address</th>
+                      <th>PID</th>
+                    </tr>
+                    <tr>    
+                      <td>940000</td>
+                      <td>48 Huntingtson St, Brookline, Boston</td>
+                      <td>1161550</td>
+                    </tr>
+                    <tr>
+                      <td>940001</td>
+                      <td>50 Huntingtson St, Brookline,  Boston</td>
+                      <td>134246</td>
+
+                    </tr>
+                    <tr>
+                      <td>940088</td>
+                      <td>548 Huntingtson St, Brookline, Boston</td>
+                      <td>2780096</td>
+                    </tr>
+                    <td>940013</td>
+                    <td>48 Sicard St, New Brunswick, NJ</td>
+                    <td>4154781</td>
+                  </tr>
+                  <tr>
+                    <td>940015</td>
+                    <td>2 Senior St, New Brunswick, NJ</td>
+                    <td>4538483</td>
+                  </tr>
+                  <td>940020</td>
+                  <td>20 Senior St, New Brunswick, NJ</td>
+                  <td>4797190</td>
+                </tr>
+                <tr>
+                  <td>940055</td>
+                  <td>Riverside Apt-3H, New Brunswick, NJ</td>
+                  <td>4860089</td>
+                </tr>
+                                      <td>940011</td>
+                      <td>25 Pine St, New Brunswick, NJ</td>
+                      <td>4985768</td>
+                    </tr>
+                    <tr>
+                      <td>940011</td>
+                      <td>90 Senior St, New Brunswick, NJ</td>
+                      <td>5035704</td>
+                    </tr>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+  
+  
+
+<script>$('.button-collapse').sideNav();
+
+    $('.collapsible').collapsible();
+    
+    $('select').material_select();</script>
+          
+</body>
+    <!-- FOOTER -->
+    
+
+
+</html>
