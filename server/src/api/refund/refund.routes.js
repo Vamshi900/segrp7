@@ -3,7 +3,7 @@ const router = express.Router();
 const dbConn = require('../../dbconnection.js');
 
 // request refund api
-// input: user_id, order_id, product_id (array), reason for refund
+// input: user_id, order_id, products (array), reason for refund
 router.post('/request', async(req, res, next) =>{
     // validate input
     if(!req.body.user_id){
@@ -45,7 +45,30 @@ router.post('/request', async(req, res, next) =>{
         }
     });
 
-    // add to the refund table or notify to seller
+    var product_ids = new Array();
+    for (i = 0; i < req.body.products.length; i++) {
+        product_ids.push(Number(req.body.products[i]))
+    }
+
+    console.log(product_ids);
+
+    //remove the returned products from order
+    dbConn.query('DELETE FROM Order_Products WHERE Product_ID IN ('+ dbConn.escape(product_ids) + ')', req.body.order_id, (err, result)=>{
+        if(err){
+            console.log('Error while fetching order by id', err);
+        }else{
+            console.log(JSON.stringify(result));
+            if(result.length == 0){
+                return res.status(400).send({
+                    message: "order does not exist"
+                });
+            }
+        }
+    });
+
+    res.status(200).send({
+        message: "refund requested, the amount will be refunded once the product(s) are returned."
+    });
 }
 );
 
