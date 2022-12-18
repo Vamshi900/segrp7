@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const dbConn = require('../../dbconnection.js');
-const verifyJWT = require('../../middleware/verifyJWT.js');
-const verifyRoles = require('../../middleware/verifyRoles.js');
 
 //[cart] Routes
 // User_ID. INT
@@ -16,7 +14,7 @@ const verifyRoles = require('../../middleware/verifyRoles.js');
 // add to cart
 // post request
 // input: user_id, product_id, quantity
-router.post('/addtocart', verifyJWT, verifyRoles("ua"), async (req, res, next) => {
+router.post('/addtocart', async (req, res, next) => {
     // safe guard against sql injection
     // validate input
     // check if user exists
@@ -74,7 +72,7 @@ router.post('/addtocart', verifyJWT, verifyRoles("ua"), async (req, res, next) =
 // delete from cart
 // delete request
 // input: user_id, product_id
-router.delete('/deletefromcart', verifyJWT, verifyRoles("ua"), async (req, res, next) => {
+router.delete('/deletefromcart', async (req, res, next) => {
     // safe guard against sql injection
     // validate input
     // check if user exists
@@ -123,7 +121,7 @@ router.delete('/deletefromcart', verifyJWT, verifyRoles("ua"), async (req, res, 
 // update quantity
 // put request
 // input: user_id, product_id, quantity
-router.put('/updatequantity', verifyJWT, verifyRoles("ua"), async (req, res, next) => {
+router.put('/updatequantity', async (req, res, next) => {
     // safe guard against sql injection
     // validate input
     // check if user exists
@@ -164,8 +162,8 @@ router.put('/updatequantity', verifyJWT, verifyRoles("ua"), async (req, res, nex
                     });
                 }
                 return res.status(200).send({
-                    message: "quantity updated in cart"
-                    
+                    message: "quantity updated in cart with " + result.affectedRows + " row(s) affected"
+
                 });
             });
         });
@@ -176,9 +174,8 @@ router.put('/updatequantity', verifyJWT, verifyRoles("ua"), async (req, res, nex
 // get cart
 // get request
 // input: user_id
-router.get('/:user_id', verifyJWT, verifyRoles("ua"), async (req, res, next) => {
+router.get('/:user_id', async (req, res, next) => {
     let user_id = req.params.user_id;
-    
 
     // safe guard against sql injection
     // validate input
@@ -188,14 +185,6 @@ router.get('/:user_id', verifyJWT, verifyRoles("ua"), async (req, res, next) => 
             message: "user_id can not be empty"
         });
     }
-    // user can only chedk his own cart
-    // admin can check any user's cart
-    if (!"ua".includes(req.role) && user_id != req.user_id) {
-        return res.status(400).send({
-            message: "user can only check his own cart"
-        });
-    }
-
     // check if user exists
     dbConn.query('SELECT * FROM User WHERE User_ID=?', user_id, (err, result) => {
         if (err) {
@@ -215,27 +204,20 @@ router.get('/:user_id', verifyJWT, verifyRoles("ua"), async (req, res, next) => 
                 data: result
             });
         }
-            // get cart
-            // dbConn.query('SELECT * FROM Cart WHERE User_ID=?', user_id, (err, result) => {
-            //     if (err) {
-            //         return res.status(400).send({
-            //             message: "cart is empty"
-            //         });
-            //   
+        // get cart
+        // dbConn.query('SELECT * FROM Cart WHERE User_ID=?', user_id, (err, result) => {
+        //     if (err) {
+        //         return res.status(400).send({
+        //             message: "cart is empty"
+        //         });
+        //   
         );
     });
 }
 );
 
-router.post('/checkout/:user_id', verifyJWT, verifyRoles("ua"), async (req, res, next) => {
+router.post('/checkout/:user_id', async (req, res, next) => {
     let user_id = req.params.user_id;
-        // user can only chedk his own cart
-    // admin can check any user's cart
-    if (!"ua".includes(req.role) && user_id != req.user_id) {
-        return res.status(400).send({
-            message: "user can only check his own cart"
-        });
-    }
 
     // safe guard against sql injection
     // validate input
@@ -303,19 +285,19 @@ router.post('/checkout/:user_id', verifyJWT, verifyRoles("ua"), async (req, res,
 
                 var discount = 0;
                 //validate coupon and apply discount
-                if(req.body.coupon_id){
-                    dbConn.query('SELECT * FROM Coupon WHERE Coupon_ID = ?', req.body.coupon_id, (err, output) => {
-                        if(output) {
-                            if(output[0].Redeemed == "NO") {
-                                discount = (sub_total * Number(output[0].discount_percent))/100;
+                if (req.body.Coupon_Id) {
+                    dbConn.query('SELECT * FROM Coupon WHERE Coupon_ID = ?', req.body.Coupon_Id, (err, output) => {
+                        if (output) {
+                            if (output[0].Redeemed == "NO") {
+                                discount = (sub_total * Number(output[0].discount_percent)) / 100;
                                 total = total - discount;
                                 return res.json({ "sub total": sub_total, "delivery fee": delivery_fee, "tax": tax, "discount": discount, "total": total, "products": result });
                             }
                         }
                     });
                 }
-                else{
-                    res.json({"sub_total":sub_total, "delivery_fee":delivery_fee, "tax": tax,  "discount": discount, "total": total, "products": result});
+                else {
+                    res.json({ "sub total": sub_total, "delivery fee": delivery_fee, "tax": tax, "discount": discount, "total": total, "products": result });
                 }
             });
         });
